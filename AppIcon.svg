@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   viewBox="0 0 200 200"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="AppIcon.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4403">
+      <stop
+         style="stop-color:#fc6076;stop-opacity:1"
+         offset="0"
+         id="stop4405" />
+      <stop
+         style="stop-color:#ff9a44;stop-opacity:1"
+         offset="1"
+         id="stop4407" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4403"
+       id="linearGradient4409"
+       x1="1.4285703"
+       y1="1049.505"
+       x2="198.57143"
+       y2="853.79071"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="-41.428571"
+     inkscape:cy="148.57143"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1680"
+     inkscape:window-height="1006"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-852.36216)">
+    <rect
+       style="opacity:1;fill:url(#linearGradient4409);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3597"
+       width="200"
+       height="200"
+       x="0"
+       y="852.36212"
+       inkscape:export-xdpi="460.79999"
+       inkscape:export-ydpi="460.79999" />
+    <g
+       id="g3542"
+       transform="matrix(6.6665972,0,0,6.6665972,20.001667,872.36299)"
+       style="fill:#ffffff;fill-opacity:1">
+      <g
+         id="Event"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Event_2"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Add_Event"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Remove_Event"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Event_Reminder"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Wine_Glass"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Toast"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Champagne"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Champagne_Open"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Alcohol_Drink"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Beer_Glass"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Party_Cake"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Pizza_Food"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Disco_Ball"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Equalizer"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="DJ"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Tent"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Firework_1"
+         style="fill:#ffffff;fill-opacity:1">
+        <g
+           id="g3478"
+           style="fill:#ffffff;fill-opacity:1">
+          <g
+             id="g3480"
+             style="fill:#ffffff;fill-opacity:1">
+            <path
+               id="path3482"
+               d="m 23.5,11 c -0.13,0 -0.258,-0.051 -0.354,-0.146 l -10,-10 C 13.003,0.711 12.96,0.496 13.038,0.309 13.116,0.122 13.298,0 13.5,0 l 10,0 C 23.776,0 24,0.224 24,0.5 l 0,10 c 0,0.202 -0.122,0.385 -0.309,0.462 C 23.63,10.988 23.564,11 23.5,11 Z M 14.707,1 23,9.293 23,1 14.707,1 Z"
+               inkscape:connector-curvature="0"
+               style="fill:#ffffff;fill-opacity:1" />
+          </g>
+          <g
+             id="g3484"
+             style="fill:#ffffff;fill-opacity:1">
+            <path
+               id="path3486"
+               d="m 8.677,20.993 c -0.64,0 -1.28,-0.243 -1.768,-0.73 L 3.737,17.091 c -0.975,-0.976 -0.974,-2.562 0,-3.535 L 15.146,2.146 c 0.195,-0.195 0.512,-0.195 0.707,0 0.195,0.195 0.195,0.512 0,0.707 L 4.444,14.263 c -0.584,0.584 -0.584,1.536 0,2.121 l 3.172,3.172 c 0.587,0.584 1.538,0.583 2.121,0 L 21.146,8.146 c 0.195,-0.195 0.512,-0.195 0.707,0 0.195,0.195 0.195,0.512 0,0.707 l -11.409,11.41 c -0.487,0.487 -1.127,0.73 -1.767,0.73 z"
+               inkscape:connector-curvature="0"
+               style="fill:#ffffff;fill-opacity:1" />
+          </g>
+          <g
+             id="g3488"
+             style="fill:#ffffff;fill-opacity:1">
+            <path
+               id="path3490"
+               d="m 1.5,24 c -0.128,0 -0.256,-0.049 -0.354,-0.146 -0.195,-0.196 -0.195,-0.513 0,-0.707 l 4.683,-4.671 c 0.195,-0.195 0.512,-0.195 0.707,0 0.195,0.196 0.195,0.513 0,0.707 L 1.853,23.854 C 1.756,23.951 1.628,24 1.5,24 Z"
+               inkscape:connector-curvature="0"
+               style="fill:#ffffff;fill-opacity:1" />
+          </g>
+          <g
+             id="g3492"
+             style="fill:#ffffff;fill-opacity:1">
+            <path
+               id="path3494"
+               d="M 1.5,20 C 1.372,20 1.244,19.951 1.146,19.854 l -1,-1 c -0.195,-0.195 -0.195,-0.512 0,-0.707 0.195,-0.195 0.512,-0.195 0.707,0 l 1,1 c 0.195,0.195 0.195,0.512 0,0.707 C 1.756,19.951 1.628,20 1.5,20 Z"
+               inkscape:connector-curvature="0"
+               style="fill:#ffffff;fill-opacity:1" />
+          </g>
+          <g
+             id="g3496"
+             style="fill:#ffffff;fill-opacity:1">
+            <path
+               id="path3498"
+               d="m 0.5,20 c -0.128,0 -0.256,-0.049 -0.354,-0.146 -0.195,-0.195 -0.195,-0.512 0,-0.707 l 1,-1 c 0.195,-0.195 0.512,-0.195 0.707,0 0.195,0.195 0.195,0.512 0,0.707 l -1,1 C 0.756,19.951 0.628,20 0.5,20 Z"
+               inkscape:connector-curvature="0"
+               style="fill:#ffffff;fill-opacity:1" />
+          </g>
+          <g
+             id="g3500"
+             style="fill:#ffffff;fill-opacity:1">
+            <path
+               id="path3502"
+               d="m 1.303,19.521 c -0.14,0 -0.269,-0.01 -0.38,-0.027 -0.273,-0.043 -0.46,-0.299 -0.417,-0.571 0.043,-0.273 0.302,-0.459 0.571,-0.417 0.068,0.009 1.739,0.226 2.455,-1.682 0.097,-0.258 0.387,-0.392 0.644,-0.292 0.259,0.097 0.39,0.385 0.292,0.644 -0.702,1.872 -2.21,2.345 -3.165,2.345 z"
+               inkscape:connector-curvature="0"
+               style="fill:#ffffff;fill-opacity:1" />
+          </g>
+          <g
+             id="g3504"
+             style="fill:#ffffff;fill-opacity:1">
+            <path
+               id="path3506"
+               d="M 15.5,15 3.664,15 c -0.276,0 -0.5,-0.224 -0.5,-0.5 0,-0.276 0.224,-0.5 0.5,-0.5 L 15.5,14 c 0.276,0 0.5,0.224 0.5,0.5 0,0.276 -0.224,0.5 -0.5,0.5 z"
+               inkscape:connector-curvature="0"
+               style="fill:#ffffff;fill-opacity:1" />
+          </g>
+          <g
+             id="g3508"
+             style="fill:#ffffff;fill-opacity:1">
+            <path
+               id="path3510"
+               d="m 12.5,18 -7.646,0 c -0.276,0 -0.5,-0.224 -0.5,-0.5 0,-0.276 0.224,-0.5 0.5,-0.5 l 7.646,0 c 0.276,0 0.5,0.224 0.5,0.5 0,0.276 -0.224,0.5 -0.5,0.5 z"
+               inkscape:connector-curvature="0"
+               style="fill:#ffffff;fill-opacity:1" />
+          </g>
+          <g
+             id="g3512"
+             style="fill:#ffffff;fill-opacity:1">
+            <path
+               id="path3514"
+               d="m 18.5,12 -12,0 C 6.224,12 6,11.776 6,11.5 6,11.224 6.224,11 6.5,11 l 12,0 c 0.276,0 0.5,0.224 0.5,0.5 0,0.276 -0.224,0.5 -0.5,0.5 z"
+               inkscape:connector-curvature="0"
+               style="fill:#ffffff;fill-opacity:1" />
+          </g>
+          <g
+             id="g3516"
+             style="fill:#ffffff;fill-opacity:1">
+            <path
+               id="path3518"
+               d="M 21,9 9.5,9 C 9.224,9 9,8.776 9,8.5 9,8.224 9.224,8 9.5,8 L 21,8 c 0.276,0 0.5,0.224 0.5,0.5 C 21.5,8.776 21.276,9 21,9 Z"
+               inkscape:connector-curvature="0"
+               style="fill:#ffffff;fill-opacity:1" />
+          </g>
+          <g
+             id="g3520"
+             style="fill:#ffffff;fill-opacity:1">
+            <path
+               id="path3522"
+               d="m 18.5,6 -6,0 C 12.224,6 12,5.776 12,5.5 12,5.224 12.224,5 12.5,5 l 6,0 C 18.776,5 19,5.224 19,5.5 19,5.776 18.776,6 18.5,6 Z"
+               inkscape:connector-curvature="0"
+               style="fill:#ffffff;fill-opacity:1" />
+          </g>
+        </g>
+      </g>
+      <g
+         id="Firework_2"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Party_Glasses"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Barbeque"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Horn"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Speaker"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="VIP"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Event_Ticket"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="VIP_Ticket"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Popcorn"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Cord"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Invitation_1"
+         style="fill:#ffffff;fill-opacity:1" />
+      <g
+         id="Invitation_2"
+         style="fill:#ffffff;fill-opacity:1" />
+    </g>
+    <rect
+       style="opacity:1;fill:#fc6076;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4399"
+       width="166.42857"
+       height="140"
+       x="-329.28571"
+       y="793.07648" />
+    <rect
+       y="940.2193"
+       x="-288.57141"
+       height="140"
+       width="166.42857"
+       id="rect4401"
+       style="opacity:1;fill:#ff9a44;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+  </g>
+</svg>
