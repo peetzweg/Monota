@@ -4,12 +4,6 @@ import { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 export default class Countdown extends Component {
-  // constructor (props){
-  //   super(props)
-  //   this.state = {
-  //     date
-  //   }
-  // }
 
   componentDidMount () {
     this.recalculateCountdown()
@@ -36,32 +30,28 @@ export default class Countdown extends Component {
   }
 
   render () {
-    console.log('hallo')
     if (!this.state) {
       return null
     }
     const {seconds, minutes, hours, days} = this.state
 
-    const timeObjs = [days, hours, minutes, seconds].map(value => {
-      return value < 10 ? `0${value}` : `${value}`
-    })
-
+    const adaptValue = (value) => value < 10 ? `0${value}` : `${value}`
     const remaining = {
       days: {
         name: 'Tage',
-        value: days,
+        value: adaptValue(days),
       },
       hours: {
         name: 'Stunden',
-        value: hours,
+        value: adaptValue(hours)
       },
       minutes: {
         name: 'Minuten',
-        value: minutes,
+        value: adaptValue(minutes)
       },
       seconds: {
         name: 'Sekunden',
-        value: seconds,
+        value: adaptValue(seconds)
       },
     }
 
