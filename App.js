@@ -36,7 +36,7 @@ export default class App extends Component<{}> {
 
     return (
       <View style={styles.container}>
-        <LinearGradient colors={GRADIENTS[3]} style={styles.linearGradient}>
+        <LinearGradient colors={GRADIENTS[0]} style={styles.linearGradient}>
           <Countdown date={newYear} />
         </LinearGradient>
       </View>
@@ -44,7 +44,7 @@ export default class App extends Component<{}> {
   }
 }
 
-const GRADIENTS = [['#FF3CAC', '#562B7C', '#2B86C5'], ['#243949', '#517fa4'], ['#FF057C', '#8D0B93', '#321575'], ['#fc6076', '#ff9a44'], ['#616161', '#9bc5c3'], ['#007adf', '#00ecbc'], ['#B6CEE8', '#F578DC']]
+const GRADIENTS = [['#56317a','#3d99be','#3ab5b0'],['#2b5876','#4e4376'],['#FF3CAC', '#562B7C', '#2B86C5'], ['#243949', '#517fa4'], ['#FF057C', '#8D0B93', '#321575'], ['#fc6076', '#ff9a44'], ['#616161', '#9bc5c3'], ['#007adf', '#00ecbc'], ['#B6CEE8', '#F578DC']]
 const styles = StyleSheet.create({
   container: {
     flex: 1,

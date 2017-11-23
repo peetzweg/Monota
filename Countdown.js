@@ -1,7 +1,7 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Component } from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 
 export default class Countdown extends Component {
   // constructor (props){
@@ -36,17 +36,58 @@ export default class Countdown extends Component {
   }
 
   render () {
-    console.log("hallo")
+    console.log('hallo')
     if (!this.state) {
       return null
     }
     const {seconds, minutes, hours, days} = this.state
 
-    const timeValueStrings = [days, hours, minutes, seconds].map(value => {
+    const timeObjs = [days, hours, minutes, seconds].map(value => {
       return value < 10 ? `0${value}` : `${value}`
     })
+
+    const remaining = {
+      days: {
+        name: 'Tage',
+        value: days,
+      },
+      hours: {
+        name: 'Stunden',
+        value: hours,
+      },
+      minutes: {
+        name: 'Minuten',
+        value: minutes,
+      },
+      seconds: {
+        name: 'Sekunden',
+        value: seconds,
+      },
+    }
+
     return (
-      <Text style={styles.countdown}>{timeValueStrings.join(':')}</Text>
+      <View>
+        <Text style={styles.text}>
+          Noch
+        </Text>
+        {
+          ['days', 'hours', 'minutes', 'seconds'].map(key => {
+            return (
+              <View style={styles.row} key={key}>
+                <Text style={styles.text}>
+                  {remaining[key].value}
+                </Text>
+                <Text style={styles.text}>
+                  {` ${remaining[key].name}`}
+                </Text>
+              </View>
+            )
+          })
+        }
+        <Text style={styles.text}>
+          bis Silvester!
+        </Text>
+      </View>
     )
   }
 }
@@ -57,12 +98,18 @@ const MINUTE_IN_MILLIS = 1000 * 60
 const SECOND_IN_MILLIS = 1000
 
 const styles = StyleSheet.create({
-  countdown: {
+  text: {
     fontWeight: '900',
     fontSize: 38,
     fontFamily: 'Avenir',
     color: '#fff'
   },
+  row: {
+    flexDirection: 'row',
+    alignContent: 'space-around',
+    alignItems: 'center',
+  }
+
 })
 
 Countdown.defaultProps = {
