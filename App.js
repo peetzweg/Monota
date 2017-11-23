@@ -4,27 +4,34 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
+  Button,
   Platform,
   StyleSheet,
   Text,
-  View
-} from 'react-native';
+  View,
+  Linking, TabBarIOS
+} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Countdown from './Countdown'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
+  'Cmd+D or shake for dev menu',
   android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+  'Shake or press menu button for dev menu',
+})
 
 export default class App extends Component<{}> {
-  render() {
 
+  onLearnMore = () => {
+    console.log('hello')
+    Linking.openURL('https://www.pyroweb.de/').catch(err => console.error('An error occurred', err))
 
+  }
+
+  render () {
     const newYear = new Date()
     newYear.setUTCFullYear(newYear.getUTCFullYear() + 1)
     newYear.setUTCMonth(0)
@@ -37,14 +44,21 @@ export default class App extends Component<{}> {
     return (
       <View style={styles.container}>
         <LinearGradient colors={GRADIENTS[0]} style={styles.linearGradient}>
+          <View />
           <Countdown date={newYear} />
+          <Button
+            onPress={this.onLearnMore}
+            color={'#ffffff'}
+            title="Jetzt Feuerwerk kaufen"
+            accessibilityLabel="Jetzt Feuerwerk kaufen"
+          />
         </LinearGradient>
       </View>
-    );
+    )
   }
 }
 
-const GRADIENTS = [['#56317a','#3d99be','#3ab5b0'],['#2b5876','#4e4376'],['#FF3CAC', '#562B7C', '#2B86C5'], ['#243949', '#517fa4'], ['#FF057C', '#8D0B93', '#321575'], ['#fc6076', '#ff9a44'], ['#616161', '#9bc5c3'], ['#007adf', '#00ecbc'], ['#B6CEE8', '#F578DC']]
+const GRADIENTS = [['#56317a', '#3d99be', '#3ab5b0'], ['#2b5876', '#4e4376'], ['#FF3CAC', '#562B7C', '#2B86C5'], ['#243949', '#517fa4'], ['#FF057C', '#8D0B93', '#321575'], ['#fc6076', '#ff9a44'], ['#616161', '#9bc5c3'], ['#007adf', '#00ecbc'], ['#B6CEE8', '#F578DC']]
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -55,7 +69,7 @@ const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     width: '100%',
   }
-});
+})
