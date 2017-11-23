@@ -9,3 +9,8 @@ react-native run-ios
 ```
 run webstorm ios config
 ```
+
+3. Update App Icons
+```
+yo rn-toolbox:assets --icon AppIcon.png 
+```
