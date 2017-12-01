@@ -1,34 +1,19 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react'
 import {
   Button,
-  Platform,
   StyleSheet,
-  Text,
   View,
-  Linking, TabBarIOS
+  Linking
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-import Countdown from './Countdown'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-  'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-  'Shake or press menu button for dev menu',
-})
+import Countdown from './Countdown'
+import NightSky from './NightSky'
 
 export default class App extends Component<{}> {
 
   onLearnMore = () => {
-    console.log('hello')
     Linking.openURL('https://www.pyroweb.de/').catch(err => console.error('An error occurred', err))
-
   }
 
   render () {
@@ -44,7 +29,7 @@ export default class App extends Component<{}> {
     return (
       <View style={styles.container}>
         <LinearGradient colors={GRADIENTS[0]} style={styles.linearGradient}>
-          <View />
+          <NightSky />
           <Countdown date={newYear} />
           <Button
             onPress={this.onLearnMore}

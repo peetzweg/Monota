@@ -7,8 +7,10 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"noisejs": "^2.1.0",
 		"react": "16.0.0",
 		"react-native": "0.50.3",
+		"react-native-canvas": "^0.1.20",
 		"react-native-linear-gradient": "^2.3.0"
 	},
 	"devDependencies": {
