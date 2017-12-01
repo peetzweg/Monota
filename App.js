@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import {
   Button,
-  StyleSheet,
+
   View,
   Linking,
   Animated,
-  Easing
+  Easing,
+  Image
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 
 import Countdown from './Countdown'
 import NightSky from './NightSky'
+import Sponsor from './Sponsor'
 
 export default class App extends Component<{}> {
 
@@ -32,10 +34,6 @@ export default class App extends Component<{}> {
         easing: Easing.linear
       }
     ).start()
-  }
-
-  onLearnMore = () => {
-    Linking.openURL('https://www.pyroweb.de/').catch(err => console.error('An error occurred', err))
   }
 
   render () {
@@ -60,7 +58,7 @@ export default class App extends Component<{}> {
         alignItems: 'center',
         justifyContent: 'center',
         opacity: this.opacityValue,
-        width:'100%'
+        width: '100%'
       },
       linearGradient: {
         flex: 1,
@@ -78,12 +76,8 @@ export default class App extends Component<{}> {
             <NightSky />
             <View />
             <Countdown date={newYear} />
-            <Button
-              onPress={this.onLearnMore}
-              color={'#ffffff'}
-              title="Jetzt Feuerwerk kaufen"
-              accessibilityLabel="Jetzt Feuerwerk kaufen"
-            />
+
+            <Sponsor image={require('./img/sponsor.png')} url={'https://www.pyroweb.de/'} />
           </LinearGradient>
         </Animated.View>
       </View>
