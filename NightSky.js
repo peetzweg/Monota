@@ -15,13 +15,11 @@ export default class NightSky extends Component {
 
   static defaultProps = {
     amountOfStars: 200,
-    width: 900,
-    height: 250,
   }
 
   handleCanvas = async (canvas) => {
     const {height, width} = Dimensions.get('window')
-    const heightToUse = height / 2
+    const heightToUse = height / 3
     let {amountOfStars} = this.props
     canvas.width = width
     canvas.height = heightToUse

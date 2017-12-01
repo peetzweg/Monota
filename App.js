@@ -30,6 +30,7 @@ export default class App extends Component<{}> {
       <View style={styles.container}>
         <LinearGradient colors={GRADIENTS[0]} style={styles.linearGradient}>
           <NightSky />
+          <View />
           <Countdown date={newYear} />
           <Button
             onPress={this.onLearnMore}
@@ -49,12 +50,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: '#3ab5b0',
   },
   linearGradient: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     width: '100%',
   }
 })

@@ -56,7 +56,7 @@ export default class Countdown extends Component {
     }
 
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.text}>
           Noch
         </Text>
@@ -88,6 +88,9 @@ const MINUTE_IN_MILLIS = 1000 * 60
 const SECOND_IN_MILLIS = 1000
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'transparent',
+  },
   text: {
     fontWeight: '900',
     fontSize: 38,
