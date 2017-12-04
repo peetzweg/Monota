@@ -20,6 +20,7 @@ export default class Sponsor extends Component {
     container: {
       backgroundColor: 'black',
       width: '100%',
+      height: 80,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
