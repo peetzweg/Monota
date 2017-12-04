@@ -57,25 +57,25 @@ export default class Countdown extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>
+        <Text allowFontScaling={false} style={styles.label}>
           Noch
         </Text>
         {
           ['days', 'hours', 'minutes', 'seconds'].map(key => {
             return (
               <View style={styles.row} key={key}>
-                <Text style={styles.text}>
+                <Text allowFontScaling={false} style={styles.value}>
                   {remaining[key].value}
                 </Text>
-                <Text style={styles.text}>
+                <Text allowFontScaling={false} style={styles.label}>
                   {` ${remaining[key].name}`}
                 </Text>
               </View>
             )
           })
         }
-        <Text style={styles.text}>
-          bis Silvester!
+        <Text allowFontScaling={false} style={styles.label}>
+          bis 2018!
         </Text>
       </View>
     )
@@ -91,15 +91,28 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'transparent',
   },
-  text: {
+  value: {
     fontWeight: '900',
-    fontSize: 38,
+    fontSize: 64,
     fontFamily: 'Avenir',
-    color: '#fff'
+    color: '#fff',
+    textShadowColor: '#000',
+    textShadowRadius: 4,
+
+    textShadowOffset: {width: 2, height: 2},
+  },
+  label: {
+    fontWeight: '900',
+    fontSize: 48,
+    // fontFamily: 'Avenir',
+    color: '#fff',
+    textShadowColor: '#000',
+    textShadowRadius: 4,
+    textShadowOffset: {width: 2, height: 2},
   },
   row: {
     flexDirection: 'row',
-    alignContent: 'space-around',
+    alignContent: 'center',
     alignItems: 'center',
   }
 
