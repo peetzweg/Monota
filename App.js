@@ -3,11 +3,11 @@ import {
   View,
   Animated,
   Easing,
+  Image,
+  Dimensions,
 } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
 
 import Countdown from './Countdown'
-import NightSky from './NightSky'
 import Sponsor from './Sponsor'
 
 export default class App extends Component<{}> {
@@ -33,6 +33,7 @@ export default class App extends Component<{}> {
   }
 
   render () {
+    const {height, width} = Dimensions.get('window')
     const newYear = new Date()
     newYear.setUTCFullYear(newYear.getUTCFullYear() + 1)
     newYear.setUTCMonth(0)
@@ -45,37 +46,42 @@ export default class App extends Component<{}> {
 
     const styles = {
       backgroundView: {
-        backgroundColor: '#3ab5b0',
+        backgroundColor: 'black',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+      },
+      backgroundImage: {
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        flex: 1,
       },
       container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
         opacity: this.opacityValue,
-        width: '100%'
+        width: '100%',
+        justifyContent: 'space-between',
       },
       linearGradient: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between',
+
         width: '100%',
       }
     }
 
     return (
       <View style={styles.backgroundView}>
+        <Image style={styles.backgroundImage}
+               source={{uri: `https://source.unsplash.com/${width}x${height}/?New-Year`}} />
         <Animated.View style={styles.container}>
-          <LinearGradient colors={GRADIENTS[0]} style={styles.linearGradient}>
-
-            <NightSky />
-            <View />
-            <Countdown date={newYear} />
-
-            <Sponsor image={require('./img/sponsor.png')} url={'https://www.pyroweb.de/'} />
-          </LinearGradient>
+          <View style={{height: 80}} />
+          <Countdown date={newYear} />
+          <Sponsor image={require('./img/sponsor.png')} url={'https://www.pyroweb.de/'} />
         </Animated.View>
       </View>
     )
