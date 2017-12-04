@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import {
-  Button,
-
   View,
-  Linking,
   Animated,
   Easing,
-  Image
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -45,6 +41,7 @@ export default class App extends Component<{}> {
     newYear.setUTCMinutes(0)
     newYear.setUTCSeconds(0)
     newYear.setUTCMilliseconds(0)
+    newYear.setHours(newYear.getHours() - 1)
 
     const styles = {
       backgroundView: {
