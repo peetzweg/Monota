@@ -7,7 +7,6 @@ import {
 
 import { PropTypes } from 'prop-types'
 import { Component } from 'react'
-import Canvas from 'react-native-canvas'
 
 export default class Sponsor extends Component {
 
