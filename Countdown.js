@@ -2,10 +2,12 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { connect } from 'react-redux'
 
-export default class Countdown extends Component {
+class Countdown extends Component {
 
   componentDidMount () {
+    console.log(this.props)
     this.recalculateCountdown()
     setInterval(() => {
       this.recalculateCountdown()
@@ -13,7 +15,7 @@ export default class Countdown extends Component {
   }
 
   recalculateCountdown = () => {
-    let overallMillis = this.props.date - new Date()
+    let overallMillis = this.props.countdowns[0] - new Date()
     const daysToNewYear = Math.floor(overallMillis / DAY_IN_MILLIS)
     overallMillis = overallMillis % (daysToNewYear * DAY_IN_MILLIS)
     const hoursToNewYear = Math.floor(overallMillis / HOUR_IN_MILLIS)
@@ -118,6 +120,5 @@ const styles = StyleSheet.create({
 
 })
 
-Countdown.defaultProps = {
-  date: new Date()
-}
+const mapStateToProps = (state) => ({countdowns: state.countdowns})
+export default connect(mapStateToProps)(Countdown)

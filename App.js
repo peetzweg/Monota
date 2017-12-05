@@ -34,15 +34,6 @@ export default class App extends Component<{}> {
 
   render () {
     const {height, width} = Dimensions.get('window')
-    const newYear = new Date()
-    newYear.setUTCFullYear(newYear.getUTCFullYear() + 1)
-    newYear.setUTCMonth(0)
-    newYear.setUTCDate(1)
-    newYear.setUTCHours(0)
-    newYear.setUTCMinutes(0)
-    newYear.setUTCSeconds(0)
-    newYear.setUTCMilliseconds(0)
-    newYear.setHours(newYear.getHours() - 1)
 
     const styles = {
       backgroundView: {
@@ -80,7 +71,7 @@ export default class App extends Component<{}> {
                source={{uri: `https://source.unsplash.com/${width}x${height}/?New-Year`}} />
         <Animated.View style={styles.container}>
           <View style={{height: 80}} />
-          <Countdown date={newYear} />
+          <Countdown />
           <Sponsor image={require('./img/sponsor.png')} url={'https://www.pyroweb.de/'} />
         </Animated.View>
       </View>
