@@ -1,4 +1,4 @@
-export const countdownReducer = (state = {countdowns: [new Date(2018, 0, 1)]}, action) => {
+export const countdownReducer = (state = {countdowns: [new Date(new Date().getFullYear() + 1, 0, 1)]}, action) => {
   switch (action.type) {
     case 'ADD':
       return ({
