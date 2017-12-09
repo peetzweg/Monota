@@ -15,6 +15,7 @@ class Countdown extends Component {
   }
 
   recalculateCountdown = () => {
+    const nextYear = this.props.countdowns[0].getFullYear()
     let overallMillis = this.props.countdowns[0] - new Date()
     const daysToNewYear = Math.floor(overallMillis / DAY_IN_MILLIS)
     overallMillis = overallMillis % (daysToNewYear * DAY_IN_MILLIS)
@@ -24,6 +25,8 @@ class Countdown extends Component {
     overallMillis = overallMillis % (minutesToNewYear * MINUTE_IN_MILLIS)
     const secondsToNewYear = Math.floor(overallMillis / SECOND_IN_MILLIS)
     this.setState({
+      nextYear,
+      totalMillisLeft: this.props.countdowns[0] - new Date(),
       seconds: secondsToNewYear,
       minutes: minutesToNewYear,
       hours: hoursToNewYear,
@@ -31,11 +34,8 @@ class Countdown extends Component {
     })
   }
 
-  render () {
-    if (!this.state) {
-      return null
-    }
-    const {seconds, minutes, hours, days} = this.state
+  renderCountdown () {
+    const {seconds, minutes, hours, days, nextYear} = this.state
 
     const adaptValue = (value) => value < 10 ? `0${value}` : `${value}`
     const remaining = {
@@ -77,10 +77,31 @@ class Countdown extends Component {
           })
         }
         <Text allowFontScaling={false} style={styles.label}>
-          bis 2018!
+          {`bis ${nextYear}!`}
         </Text>
       </View>
     )
+  }
+
+  renderHappyNewYear () {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.emoji}>🎉</Text>
+        <Text style={styles.label}>Froh's Neues!</Text>
+      </View>
+    )
+  }
+
+  render () {
+    if (!this.state) {
+      return null
+    }
+    const {totalMillisLeft} = this.state
+    if (totalMillisLeft > 0) {
+      return (this.renderCountdown())
+    } else {
+      return (this.renderHappyNewYear())
+    }
   }
 }
 
@@ -98,19 +119,16 @@ const styles = StyleSheet.create({
     fontSize: 64,
     fontFamily: 'Avenir',
     color: '#fff',
-    textShadowColor: '#000',
-    textShadowRadius: 4,
-
-    textShadowOffset: {width: 2, height: 2},
   },
   label: {
     fontWeight: '900',
     fontSize: 48,
     // fontFamily: 'Avenir',
     color: '#fff',
-    textShadowColor: '#000',
-    textShadowRadius: 4,
-    textShadowOffset: {width: 2, height: 2},
+  },
+  emoji: {
+    fontSize: 64,
+    textAlign: 'center',
   },
   row: {
     flexDirection: 'row',
