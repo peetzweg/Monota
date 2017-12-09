@@ -72,7 +72,7 @@ export default class App extends Component<{}> {
           <LinearGradient colors={GRADIENTS[0]} style={styles.linearGradient}>
             <View  />
             <Countdown />
-            <Sponsor image={require('./img/sponsor.png')} url={'https://www.pyroweb.de/'} />
+            <Sponsor image={require('./img/sponsor.png')} url={'https://www.pyroweb.de/?utm_source=silvestercountdown&utm_medium=banner&utm_campaign=silvestercountdownapp'} />
           </LinearGradient>
         </Animated.View>
 
