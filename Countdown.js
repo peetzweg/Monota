@@ -2,9 +2,12 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { connect } from 'react-redux'
 
 class Countdown extends Component {
+
+  static propTypes = {
+    countdown: PropTypes.object.isRequired,
+  }
 
   componentDidMount () {
     console.log(this.props)
@@ -15,8 +18,8 @@ class Countdown extends Component {
   }
 
   recalculateCountdown = () => {
-    const nextYear = this.props.countdowns[0].getFullYear()
-    let overallMillis = this.props.countdowns[0] - new Date()
+    const nextYear = this.props.countdown.date.getFullYear()
+    let overallMillis = this.props.countdown.date - new Date()
     const daysToNewYear = Math.floor(overallMillis / DAY_IN_MILLIS)
     overallMillis = overallMillis % (daysToNewYear * DAY_IN_MILLIS)
     const hoursToNewYear = Math.floor(overallMillis / HOUR_IN_MILLIS)
@@ -26,7 +29,7 @@ class Countdown extends Component {
     const secondsToNewYear = Math.floor(overallMillis / SECOND_IN_MILLIS)
     this.setState({
       nextYear,
-      totalMillisLeft: this.props.countdowns[0] - new Date(),
+      totalMillisLeft: this.props.countdown.date - new Date(),
       seconds: secondsToNewYear,
       minutes: minutesToNewYear,
       hours: hoursToNewYear,
@@ -77,7 +80,7 @@ class Countdown extends Component {
           })
         }
         <Text allowFontScaling={false} style={styles.label}>
-          {`bis ${nextYear}!`}
+          {`bis ${this.props.countdown.title}!`}
         </Text>
       </View>
     )
@@ -118,13 +121,13 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     fontSize: 64,
     fontFamily: 'Avenir',
-    color: '#fff',
+    color: '#000',
   },
   label: {
     fontWeight: '900',
     fontSize: 48,
     // fontFamily: 'Avenir',
-    color: '#fff',
+    color: '#000',
   },
   emoji: {
     fontSize: 64,
@@ -135,8 +138,6 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
   }
-
 })
 
-const mapStateToProps = (state) => ({countdowns: state.countdowns})
-export default connect(mapStateToProps)(Countdown)
+export default Countdown

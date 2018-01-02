@@ -3,11 +3,15 @@ import React from 'react'
 import { combineReducers, createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import { countdownReducer } from './CountdownReducer'
+import { countdowns } from './reducers/CountdownReducer'
+import { context } from './reducers/ContextReducer'
 import App from './App'
 
 const ReduxApp = () => (
-  <Provider store={createStore(countdownReducer)}>
+  <Provider store={createStore(combineReducers({
+    countdowns,
+    context
+  }))}>
     <App />
   </Provider>
 )
