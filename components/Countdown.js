@@ -16,9 +16,13 @@ class Countdown extends Component {
 
   componentDidMount () {
     this.recalculateCountdown()
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.recalculateCountdown()
     }, 1000)
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.intervalId)
   }
 
   recalculateCountdown = () => {
@@ -76,25 +80,38 @@ class Countdown extends Component {
 
     return (
       <View style={styles.container}>
-        <DeadlineTitle value={countdown.title} />
-        <View style={styles.row}>
-          {
-            ['days', 'hours', 'minutes', 'seconds'].map(key => {
-              if (remaining[key].value <= 0 && key !== 'seconds') return null
-              return (
-                <CountingNumber
-                  value={remaining[key].value}
-                  label={remaining[key].name}
-                />
-              )
-            })
-          }
+        <View style={styles.top}>
+          <DeadlineTitle value={countdown.title} />
         </View>
-        <Button
-          onPress={this.props.onDone}
-          title="Erledigt"
-          color="#424242"
-        />
+
+        <View style={styles.bottom}>
+          <View style={styles.row}>
+            {
+              ['days', 'hours', 'minutes', 'seconds'].map(key => {
+                if (remaining[key].value <= 0 && key !== 'seconds') return null
+                return (
+                  <CountingNumber
+                    key={key}
+                    value={remaining[key].value}
+                    label={remaining[key].name}
+                  />
+                )
+              })
+            }
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              onPress={this.props.onDone}
+              title="Das wird nix"
+              color="#424242"
+            />
+            <Button
+              onPress={this.props.onDone}
+              title="Erledigt"
+              color="#424242"
+            />
+          </View>
+        </View>
       </View>
     )
   }
@@ -131,8 +148,21 @@ const styles = StyleSheet.create({
     display: 'flex',
     height: '100%',
     flexDirection: 'column',
-    alignContent: 'center',
+  },
+  top: {
+    flex: 2,
     justifyContent: 'center',
+  },
+  bottom: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   emoji: {
     fontSize: 64,
@@ -142,7 +172,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-
   }
 })
 
