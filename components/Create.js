@@ -56,20 +56,22 @@ class Create extends Component {
           <Text style={styles.question}>
             Was muss du erledigen?
           </Text>
-          <TextInput
-            ref={input => this.input = input}
-            selectionColor={'#FC5C63'}
-            onKeyPress={this.onKeyPress}
-            multiline
-            numberOfLines={8}
-            autoCorrect={false}
-            allowFontScaling={false}
-            returnKeyType={'done'}
-            enablesReturnKeyAutomatically
-            style={styles.titleInput}
-            onChangeText={this.onChangeText}
-            value={title}
-          />
+          <View style={styles.titleContainer}>
+            <TextInput
+              ref={input => this.input = input}
+              selectionColor={'#FC5C63'}
+              onKeyPress={this.onKeyPress}
+              multiline
+              numberOfLines={8}
+              autoCorrect={false}
+              allowFontScaling={false}
+              returnKeyType={'done'}
+              enablesReturnKeyAutomatically
+              style={styles.titleInput}
+              onChangeText={this.onChangeText}
+              value={title}
+            />
+          </View>
         </View>
         <View style={styles.bottom}>
           <Text style={styles.question}>
@@ -115,6 +117,11 @@ const
       fontSize: 34,
       fontWeight: '900',
       color: '#424242',
+    },
+    titleContainer: {
+      borderLeftWidth: 2,
+      borderColor: '#FC5C63',
+      paddingLeft: 16,
     },
     titleInput: {
       fontSize: 34,

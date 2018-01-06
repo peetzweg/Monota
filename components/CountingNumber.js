@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   value: {
-    fontWeight: '900',
     fontSize: 48,
     fontFamily: 'Avenir',
     color: '#424242',
