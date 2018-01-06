@@ -8,6 +8,9 @@ import { countdowns } from './reducers/CountdownReducer'
 import { context } from './reducers/ContextReducer'
 import App from './App'
 
+// Disable annoying debug warnings
+console.disableYellowBox = true
+
 const store = createStore(
   combineReducers({
     countdowns,
