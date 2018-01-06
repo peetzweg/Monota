@@ -1,9 +1,11 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import CountingNumber from './CountingNumber'
 import DeadlineTitle from './DeadlineTitle'
+import { connect } from 'react-redux'
+import { removeCountdown } from './actions'
 
 class Countdown extends Component {
 
@@ -19,23 +21,35 @@ class Countdown extends Component {
   }
 
   recalculateCountdown = () => {
-    const nextYear = this.props.countdown.date.getFullYear()
-    let overallMillis = this.props.countdown.date - new Date()
-    const daysToNewYear = Math.floor(overallMillis / DAY_IN_MILLIS)
-    overallMillis = overallMillis % (daysToNewYear * DAY_IN_MILLIS)
-    const hoursToNewYear = Math.floor(overallMillis / HOUR_IN_MILLIS)
-    overallMillis = overallMillis % (hoursToNewYear * HOUR_IN_MILLIS)
-    const minutesToNewYear = Math.floor(overallMillis / MINUTE_IN_MILLIS)
-    overallMillis = overallMillis % (minutesToNewYear * MINUTE_IN_MILLIS)
-    const secondsToNewYear = Math.floor(overallMillis / SECOND_IN_MILLIS)
-    this.setState({
-      nextYear,
-      totalMillisLeft: this.props.countdown.date - new Date(),
-      seconds: secondsToNewYear,
-      minutes: minutesToNewYear,
-      hours: hoursToNewYear,
-      days: daysToNewYear,
-    })
+    const {countdown} = this.props
+    const {date} = countdown
+    console.log('date', date)
+    let overallMillis = date - new Date()
+    console.log('overallMillis', overallMillis)
+    const days = Math.floor(overallMillis / DAY_IN_MILLIS)
+    if (days !== 0) {
+      overallMillis = overallMillis % (days * DAY_IN_MILLIS)
+    }
+    const hours = Math.floor(overallMillis / HOUR_IN_MILLIS)
+    if (hours !== 0) {
+      overallMillis = overallMillis % (hours * HOUR_IN_MILLIS)
+    }
+
+    const minutes = Math.floor(overallMillis / MINUTE_IN_MILLIS)
+    if (minutes !== 0) {
+      overallMillis = overallMillis % (minutes * MINUTE_IN_MILLIS)
+    }
+    const seconds = Math.floor(overallMillis / SECOND_IN_MILLIS)
+    const newState = {
+      totalMillisLeft: date - new Date(),
+      seconds,
+      minutes,
+      hours,
+      days,
+    }
+
+    console.log('newState', newState)
+    this.setState(newState)
   }
 
   renderCountdown () {
@@ -68,7 +82,7 @@ class Countdown extends Component {
         <View style={styles.row}>
           {
             ['days', 'hours', 'minutes', 'seconds'].map(key => {
-              if (remaining[key].value <= 0) return null
+              if (remaining[key].value <= 0 && key !== 'seconds') return null
               return (
                 <CountingNumber
                   value={remaining[key].value}
@@ -78,6 +92,11 @@ class Countdown extends Component {
             })
           }
         </View>
+        <Button
+          onPress={this.props.onDone}
+          title="Erledigt"
+          color="#424242"
+        />
       </View>
     )
   }
@@ -129,4 +148,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Countdown
+export default connect(null, {onDone: removeCountdown})(Countdown)
