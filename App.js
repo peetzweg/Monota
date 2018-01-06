@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {
   View,
+  SafeAreaView,
   StyleSheet
 } from 'react-native'
 import { connect } from 'react-redux'
@@ -32,7 +33,7 @@ class App extends Component<{}> {
   render () {
     const {countdowns} = this.props
     return (
-      <View style={{flex: 1}}>
+      <SafeAreaView style={{flex: 1}}>
         <Swiper
           showsPagination={false}
           ref={swiper => this.swiper = swiper}
@@ -40,7 +41,7 @@ class App extends Component<{}> {
           {this.renderCountdowns(countdowns)}
           {this.renderCreate()}
         </Swiper>
-      </View>
+      </SafeAreaView>
     )
   }
 }
