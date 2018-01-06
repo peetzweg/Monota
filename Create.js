@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types'
 import { Component } from 'react'
 import { Button, DatePickerIOS, StyleSheet, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
-import { addCountdown, switchContext } from './actions'
+import { addCountdown } from './actions'
 
 class Create extends Component {
 
@@ -34,11 +34,11 @@ class Create extends Component {
   onCountdownCreate = () => {
     // TODO handle missing title input
     this.props.onCountdownCreate(this.state.title, this.state.selectedDate)
-    this.props.onCreate()
     this.setState(Create.getInitialState())
   }
 
   render () {
+    const {title, selectedDate} = this.state
     return (
       <View style={styles.container}>
         <View>
@@ -51,7 +51,7 @@ class Create extends Component {
             autoFocus
             style={styles.titleInput}
             onChangeText={this.onChangeText}
-            value={this.state.title}
+            value={title}
           />
         </View>
         <View>
@@ -60,7 +60,7 @@ class Create extends Component {
           </Text>
           <DatePickerIOS
             mode={'date'}
-            date={this.state.selectedDate}
+            date={selectedDate}
             minimumDate={new Date()}
             onDateChange={this.onDateChange}
           />
@@ -89,20 +89,22 @@ const
       fontSize: 34,
       fontWeight: '900',
       textAlign: 'center',
+      color: '#424242',
     },
     titleInput: {
       fontSize: 34,
-      // fontFamily: 'Avenir',
-      color: '#000',
+      fontFamily: 'Avenir',
+      color: '#424242',
     },
     titleLabel: {
+      fontWeight: '900',
       fontSize: 16,
-      // fontFamily: 'Avenir',
-      color: '#000',
+      fontFamily: 'Avenir',
+      color: '#424242',
     },
 
   })
 
 Create.propTypes = {}
 Create.defaultProps = {}
-export default connect(null, {onCountdownCreate: addCountdown, onContextSwitch: switchContext})(Create)
+export default connect(null, {onCountdownCreate: addCountdown})(Create)
