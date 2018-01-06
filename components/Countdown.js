@@ -85,20 +85,29 @@ class Countdown extends Component {
         </View>
 
         <View style={styles.bottom}>
-          <View style={styles.row}>
-            {totalMillisLeft < 0
-              ? <Text>Zu spät digger, der Zug ist abgefahren...</Text>
-              : ['days', 'hours', 'minutes', 'seconds'].map(key => {
-                if (remaining[key].value <= 0 && key !== 'seconds') return null
-                return (
-                  <CountingNumber
-                    key={key}
-                    value={remaining[key].value}
-                    label={remaining[key].name}
-                  />
-                )
-              })
-            }
+          <View>
+            <View style={styles.row}>
+              {totalMillisLeft < 0
+                ? <Text>Zu spät digger, der Zug ist abgefahren...</Text>
+                : ['days', 'hours', 'minutes', 'seconds'].map(key => {
+                  if (remaining[key].value <= 0 && key !== 'seconds') return null
+                  return (
+                    <CountingNumber
+                      key={key}
+                      value={remaining[key].value}
+                      label={remaining[key].name}
+                    />
+                  )
+                })
+              }
+            </View>
+            <Text style={styles.deadlineDate}>
+              bis zum {this.props.countdown.date.toLocaleDateString('de-DE', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric' // TODO only show if next year
+            })}
+            </Text>
           </View>
           <View style={styles.buttonContainer}>
 
@@ -117,15 +126,6 @@ class Countdown extends Component {
             }
           </View>
         </View>
-      </View>
-    )
-  }
-
-  timeIsUp () {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.emoji}>🎉</Text>
-        <Text style={styles.label}>Froh's Neues!</Text>
       </View>
     )
   }
@@ -159,16 +159,23 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
-  buttonContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+  deadlineDate: {
+    fontFamily: 'Avenir',
+    fontSize: 16,
+    color: '#424242',
+    textAlign: 'center',
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-  }
+  },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+
 })
 
 export default connect(null, {onDone: removeCountdown})(Countdown)
