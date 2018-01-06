@@ -10,7 +10,6 @@ class Countdown extends Component {
   }
 
   componentDidMount () {
-    console.log(this.props)
     this.recalculateCountdown()
     setInterval(() => {
       this.recalculateCountdown()

@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
 import {
   View,
-  Animated,
-  Easing, StyleSheet,
-  Button,
+  StyleSheet,
   Text
 } from 'react-native'
 import { connect } from 'react-redux'
-import LinearGradient from 'react-native-linear-gradient'
 import Swiper from 'react-native-swiper'
-import scrollBy from 'react-native-swiper'
 
 import Countdown from './Countdown'
 import Create from './Create'

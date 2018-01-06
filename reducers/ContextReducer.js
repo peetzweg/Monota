@@ -1,6 +1,4 @@
 export const context = (state = 1, action) => {
-  console.log('state', state)
-  console.log('action', action)
   switch (action.type) {
     case 'SWITCH_CONTEXT':
       switch (action.newContext) {
