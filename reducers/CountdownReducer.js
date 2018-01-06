@@ -1,4 +1,3 @@
-// new Date(new Date().getFullYear() + 1, 0, 1)
 export const countdowns = (state = [], action) => {
   switch (action.type) {
     case 'ADD_COUNTDOWN':
