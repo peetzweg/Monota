@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import logger from 'redux-logger'
 
 import { countdowns } from './reducers/CountdownReducer'
-import { context } from './reducers/ContextReducer'
+import { slide } from './reducers/SlideReducer'
 import App from './App'
 
 // Disable annoying debug warnings
@@ -14,7 +14,7 @@ console.disableYellowBox = true
 const store = createStore(
   combineReducers({
     countdowns,
-    context
+    slide
   }),
   applyMiddleware(logger)
 )

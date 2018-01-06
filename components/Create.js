@@ -21,6 +21,14 @@ class Create extends Component {
     }
   }
 
+  componentDidUpdate (prevProps, prevState, prevContext) {
+    if (prevProps.currentSlide !== this.props.currentSlide && this.props.currentSlide === 'CREATE' && this.state.title === '') {
+      this.input.focus()
+    } else if (this.props.currentSlide !== 'CREATE') {
+      this.input.blur()
+    }
+  }
+
   onKeyPress = (event) => {
     if (event.nativeEvent.key === 'Enter') {
       this.input.blur()
@@ -64,7 +72,7 @@ class Create extends Component {
               multiline
               blurOnSubmit
               numberOfLines={8}
-              autoCorrect={false}
+              autoCorrect
               allowFontScaling={false}
               returnKeyType={'done'}
               enablesReturnKeyAutomatically
@@ -143,4 +151,5 @@ const
 
 Create.propTypes = {}
 Create.defaultProps = {}
-export default connect(null, {onCountdownCreate: addCountdown})(Create)
+const mapStateToProps = (state) => ({currentSlide: state.slide})
+export default connect(mapStateToProps, {onCountdownCreate: addCountdown})(Create)

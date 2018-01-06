@@ -8,7 +8,7 @@ export const removeCountdown = (id) => ({
   type: 'DELETE_COUNTDOWN',
 })
 
-export const switchContext = (newContext) => ({
-  type: 'SWITCH_CONTEXT',
-  newContext,
+export const changeSlide = (newSlide) => ({
+  type: 'CHANGE_SLIDE',
+  newSlide,
 })
