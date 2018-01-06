@@ -2,6 +2,8 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import CountingNumber from './CountingNumber'
+import DeadlineTitle from './DeadlineTitle'
 
 class Countdown extends Component {
 
@@ -37,7 +39,8 @@ class Countdown extends Component {
   }
 
   renderCountdown () {
-    const {seconds, minutes, hours, days, nextYear} = this.state
+    const {seconds, minutes, hours, days} = this.state
+    const {countdown} = this.props
 
     const adaptValue = (value) => value < 10 ? `0${value}` : `${value}`
     const remaining = {
@@ -61,31 +64,25 @@ class Countdown extends Component {
 
     return (
       <View style={styles.container}>
-        <Text allowFontScaling={false} style={styles.label}>
-          Noch
-        </Text>
-        {
-          ['days', 'hours', 'minutes', 'seconds'].map(key => {
-            return (
-              <View style={styles.row} key={key}>
-                <Text allowFontScaling={false} style={styles.value}>
-                  {remaining[key].value}
-                </Text>
-                <Text allowFontScaling={false} style={styles.label}>
-                  {` ${remaining[key].name}`}
-                </Text>
-              </View>
-            )
-          })
-        }
-        <Text allowFontScaling={false} style={styles.label}>
-          {`bis ${this.props.countdown.title}!`}
-        </Text>
+        <DeadlineTitle value={countdown.title} />
+        <View style={styles.row}>
+          {
+            ['days', 'hours', 'minutes', 'seconds'].map(key => {
+              if (remaining[key].value <= 0) return null
+              return (
+                <CountingNumber
+                  value={remaining[key].value}
+                  label={remaining[key].name}
+                />
+              )
+            })
+          }
+        </View>
       </View>
     )
   }
 
-  renderHappyNewYear () {
+  timeIsUp () {
     return (
       <View style={styles.container}>
         <Text style={styles.emoji}>🎉</Text>
@@ -102,7 +99,7 @@ class Countdown extends Component {
     if (totalMillisLeft > 0) {
       return (this.renderCountdown())
     } else {
-      return (this.renderHappyNewYear())
+      return (this.timeIsUp())
     }
   }
 }
@@ -114,19 +111,11 @@ const SECOND_IN_MILLIS = 1000
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'transparent',
-  },
-  value: {
-    fontWeight: '900',
-    fontSize: 64,
-    fontFamily: 'Avenir',
-    color: '#000',
-  },
-  label: {
-    fontWeight: '900',
-    fontSize: 48,
-    // fontFamily: 'Avenir',
-    color: '#000',
+    display: 'flex',
+    height: '100%',
+    flexDirection: 'column',
+    alignContent: 'center',
+    justifyContent: 'center',
   },
   emoji: {
     fontSize: 64,
@@ -134,8 +123,9 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
+
   }
 })
 

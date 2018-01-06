@@ -9,7 +9,6 @@ import Swiper from 'react-native-swiper'
 
 import Countdown from './Countdown'
 import Create from './Create'
-import { addCountdown, switchContext } from './actions'
 
 class App extends Component<{}> {
   renderCountdowns (countdowns) {
@@ -22,12 +21,7 @@ class App extends Component<{}> {
         </View>)
     }
 
-    return (
-      <View
-        style={styles.container}
-      >
-        <Countdown countdown={countdowns[0]} />
-      </View>)
+    return (<Countdown countdown={countdowns[0]} />)
   }
 
   renderCreate () {
@@ -39,13 +33,11 @@ class App extends Component<{}> {
   }
 
   render () {
-    const {countdowns, context} = this.props
+    const {countdowns} = this.props
     return (
       <View style={{flex: 1}}>
         <Swiper
           showsPagination={false}
-          loop={true}
-          ref={(swiper) => {this.swiper = swiper}}
         >
           {this.renderCountdowns(countdowns)}
           {this.renderCreate()}
@@ -55,38 +47,7 @@ class App extends Component<{}> {
   }
 }
 
-const styles = StyleSheet.create({
-  backgroundView: {
-    backgroundColor: '#3ab5b0',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  backgroundImage: {
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    width: '100%',
-    justifyContent: 'center',
-  },
-  linearGradient: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-  }
-})
+const styles = StyleSheet.create({})
 
 const mapStateToProps = (state) => ({countdowns: state.countdowns, context: state.context})
-const mapDispatchToProps = {
-  onCountdownCreate: addCountdown,
-  onContextSwitch: switchContext,
-}
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, null)(App)
