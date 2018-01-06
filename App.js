@@ -35,6 +35,7 @@ class App extends Component<{}> {
     return (
       <SafeAreaView style={{flex: 1}}>
         <Swiper
+          loop={false}
           showsPagination={false}
           ref={swiper => this.swiper = swiper}
         >

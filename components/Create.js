@@ -21,6 +21,12 @@ class Create extends Component {
     }
   }
 
+  onKeyPress = (event) => {
+    if (event.nativeEvent.key === 'Enter') {
+      this.input.blur()
+    }
+  }
+
   onDateChange = (selectedDate) => {
     this.setState({
       selectedDate,
@@ -32,12 +38,14 @@ class Create extends Component {
   }
 
   onCountdownCreate = () => {
-    const {onCountdownCreate, onCreate} = this.props
-    const {title, selectedDate} = this.state
-    // TODO handle missing title input
-    onCountdownCreate(title, selectedDate)
-    onCreate()
-    this.setState(Create.getInitialState())
+    const {title} = this.state
+    if (title !== '') {
+      const {selectedDate} = this.state
+      const {onCountdownCreate, onCreate} = this.props
+      onCountdownCreate(title, selectedDate)
+      onCreate()
+      this.setState(Create.getInitialState())
+    }
   }
 
   render () {
@@ -49,10 +57,15 @@ class Create extends Component {
             Was muss du erledigen?
           </Text>
           <TextInput
+            ref={input => this.input = input}
+            selectionColor={'#FC5C63'}
+            onKeyPress={this.onKeyPress}
             multiline
+            numberOfLines={8}
             autoCorrect={false}
             allowFontScaling={false}
-            autoFocus
+            returnKeyType={'done'}
+            enablesReturnKeyAutomatically
             style={styles.titleInput}
             onChangeText={this.onChangeText}
             value={title}
@@ -70,8 +83,8 @@ class Create extends Component {
           />
           <Button
             onPress={this.onCountdownCreate}
-            title="Neue Deadline Erstellen"
-            color="#FC5C63"
+            title='Neue Deadline Erstellen'
+            color='#FC5C63'
           />
         </View>
 
