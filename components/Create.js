@@ -54,7 +54,7 @@ class Create extends Component {
       <View style={styles.container}>
         <View style={styles.top}>
           <Text style={styles.question}>
-            Was muss du erledigen?
+            Was möchtest du erledigen?
           </Text>
           <View style={styles.titleContainer}>
             <TextInput
@@ -62,6 +62,7 @@ class Create extends Component {
               selectionColor={'#FC5C63'}
               onKeyPress={this.onKeyPress}
               multiline
+              blurOnSubmit
               numberOfLines={8}
               autoCorrect={false}
               allowFontScaling={false}
@@ -75,7 +76,7 @@ class Create extends Component {
         </View>
         <View style={styles.bottom}>
           <Text style={styles.question}>
-            Bis wann musst du es erledigt haben?
+            Bis wann willst du es erledigt haben?
           </Text>
           <DatePickerIOS
             mode={'date'}
