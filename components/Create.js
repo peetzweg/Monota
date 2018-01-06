@@ -44,11 +44,12 @@ class Create extends Component {
     const {title, selectedDate} = this.state
     return (
       <View style={styles.container}>
-        <View>
-          <Text style={styles.titleLabel}>
+        <View style={styles.top}>
+          <Text style={styles.question}>
             Was muss du erledigen?
           </Text>
           <TextInput
+            multiline
             autoCorrect={false}
             allowFontScaling={false}
             autoFocus
@@ -57,8 +58,8 @@ class Create extends Component {
             value={title}
           />
         </View>
-        <View>
-          <Text style={styles.titleLabel}>
+        <View style={styles.bottom}>
+          <Text style={styles.question}>
             Bis wann musst du es erledigt haben?
           </Text>
           <DatePickerIOS
@@ -67,12 +68,13 @@ class Create extends Component {
             minimumDate={new Date()}
             onDateChange={this.onDateChange}
           />
+          <Button
+            onPress={this.onCountdownCreate}
+            title="Neue Deadline Erstellen"
+            color="#FC5C63"
+          />
         </View>
-        <Button
-          onPress={this.onCountdownCreate}
-          title="Neue Deadline Erstellen"
-          color="#000"
-        />
+
       </View>
     )
   }
@@ -81,17 +83,23 @@ class Create extends Component {
 const
   styles = StyleSheet.create({
     container: {
-      backgroundColor: 'white',
-      width: '100%',
       display: 'flex',
+      flexDirection: 'column',
       padding: 16,
-      justifyContent: 'space-around',
       height: '100%'
+    },
+    top: {
+      flex: 4,
+    },
+    bottom: {
+      flex: 3,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
     },
     title: {
       fontSize: 34,
       fontWeight: '900',
-      textAlign: 'center',
       color: '#424242',
     },
     titleInput: {
@@ -99,12 +107,15 @@ const
       fontFamily: 'Avenir',
       color: '#424242',
     },
-    titleLabel: {
-      fontWeight: '900',
+    question: {
       fontSize: 16,
       fontFamily: 'Avenir',
       color: '#424242',
     },
+    button: {
+      fontFamily: 'Avenir',
+      color: '#424242',
+    }
 
   })
 

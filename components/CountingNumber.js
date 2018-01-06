@@ -37,11 +37,10 @@ const styles = StyleSheet.create({
     color: '#424242',
   },
   label: {
-    fontWeight: '900',
     fontSize: 16,
     fontFamily: 'Avenir',
     color: '#424242',
   },
 })
 
-export default CountingNumber;
+export default CountingNumber

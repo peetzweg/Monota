@@ -1,24 +1,21 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
-  Text
+  StyleSheet
 } from 'react-native'
 import { connect } from 'react-redux'
 import Swiper from 'react-native-swiper'
 
 import Countdown from './components/Countdown'
 import Create from './components/Create'
+import AllDone from './components/AllDone'
 
 class App extends Component<{}> {
   renderCountdowns (countdowns) {
     if (countdowns.length === 0) {
       return (
-        <View
-          style={styles.container}
-        >
-          <Text>Du hast noch keine Deadline, swipe nach rechts um einen neue Deadline zu erstellen.</Text>
-        </View>)
+        <AllDone onCreateCountdown={() => this.swiper.scrollBy(1)} />
+      )
     }
 
     return (<Countdown countdown={countdowns[0]} />)

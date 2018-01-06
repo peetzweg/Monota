@@ -55,7 +55,7 @@ class Countdown extends Component {
   }
 
   renderCountdown () {
-    const {seconds, minutes, hours, days} = this.state
+    const {totalMillisLeft, seconds, minutes, hours, days} = this.state
     const {countdown} = this.props
 
     const adaptValue = (value) => value < 10 ? `0${value}` : `${value}`
@@ -86,8 +86,9 @@ class Countdown extends Component {
 
         <View style={styles.bottom}>
           <View style={styles.row}>
-            {
-              ['days', 'hours', 'minutes', 'seconds'].map(key => {
+            {totalMillisLeft < 0
+              ? <Text>Zu spät digger, der Zug ist abgefahren...</Text>
+              : ['days', 'hours', 'minutes', 'seconds'].map(key => {
                 if (remaining[key].value <= 0 && key !== 'seconds') return null
                 return (
                   <CountingNumber
@@ -100,16 +101,20 @@ class Countdown extends Component {
             }
           </View>
           <View style={styles.buttonContainer}>
+
             <Button
               onPress={this.props.onDone}
-              title="Das wird nix"
-              color="#424242"
+              title={totalMillisLeft < 0 ? 'Das war wohl nix' : 'Das wird nix'}
+              color="#FC5C63"
             />
-            <Button
-              onPress={this.props.onDone}
-              title="Erledigt"
-              color="#424242"
-            />
+            {totalMillisLeft < 0
+              ? null
+              : <Button
+                onPress={this.props.onDone}
+                title="Erledigt"
+                color="#FC5C63"
+              />
+            }
           </View>
         </View>
       </View>
@@ -129,12 +134,7 @@ class Countdown extends Component {
     if (!this.state) {
       return null
     }
-    const {totalMillisLeft} = this.state
-    if (totalMillisLeft > 0) {
-      return (this.renderCountdown())
-    } else {
-      return (this.timeIsUp())
-    }
+    return (this.renderCountdown())
   }
 }
 
@@ -147,14 +147,14 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     height: '100%',
+    padding: 16,
     flexDirection: 'column',
   },
   top: {
-    flex: 2,
-    justifyContent: 'center',
+    flex: 4,
   },
   bottom: {
-    flex: 1,
+    flex: 3,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -163,10 +163,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
-  },
-  emoji: {
-    fontSize: 64,
-    textAlign: 'center',
   },
   row: {
     flexDirection: 'row',
