@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, Button } from 'react-native'
 import CountingNumber from './CountingNumber'
 import DeadlineTitle from './DeadlineTitle'
 import { connect } from 'react-redux'
-import { removeCountdown } from './actions'
+import { removeCountdown } from '../actions/index'
 
 class Countdown extends Component {
 

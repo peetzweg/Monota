@@ -7,8 +7,8 @@ import {
 import { connect } from 'react-redux'
 import Swiper from 'react-native-swiper'
 
-import Countdown from './Countdown'
-import Create from './Create'
+import Countdown from './components/Countdown'
+import Create from './components/Create'
 
 class App extends Component<{}> {
   renderCountdowns (countdowns) {

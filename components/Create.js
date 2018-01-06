@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types'
 import { Component } from 'react'
 import { Button, DatePickerIOS, StyleSheet, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
-import { addCountdown } from './actions'
+import { addCountdown } from '../actions/index'
 
 class Create extends Component {
 
