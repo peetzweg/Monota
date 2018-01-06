@@ -2,9 +2,10 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Component } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
+import { connect } from 'react-redux'
 import CountingNumber from './CountingNumber'
 import DeadlineTitle from './DeadlineTitle'
-import { connect } from 'react-redux'
+
 import { removeCountdown } from '../actions/index'
 
 class Countdown extends Component {
