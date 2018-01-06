@@ -23,9 +23,8 @@ class Countdown extends Component {
   recalculateCountdown = () => {
     const {countdown} = this.props
     const {date} = countdown
-    console.log('date', date)
+
     let overallMillis = date - new Date()
-    console.log('overallMillis', overallMillis)
     const days = Math.floor(overallMillis / DAY_IN_MILLIS)
     if (days !== 0) {
       overallMillis = overallMillis % (days * DAY_IN_MILLIS)
@@ -40,16 +39,14 @@ class Countdown extends Component {
       overallMillis = overallMillis % (minutes * MINUTE_IN_MILLIS)
     }
     const seconds = Math.floor(overallMillis / SECOND_IN_MILLIS)
-    const newState = {
+
+    this.setState({
       totalMillisLeft: date - new Date(),
       seconds,
       minutes,
       hours,
       days,
-    }
-
-    console.log('newState', newState)
-    this.setState(newState)
+    })
   }
 
   renderCountdown () {
