@@ -38,6 +38,7 @@ class App extends Component<{}> {
       <View style={{flex: 1}}>
         <Swiper
           showsPagination={false}
+          ref={swiper => this.swiper = swiper}
         >
           {this.renderCountdowns(countdowns)}
           {this.renderCreate()}

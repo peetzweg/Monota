@@ -32,8 +32,11 @@ class Create extends Component {
   }
 
   onCountdownCreate = () => {
+    const {onCountdownCreate, onCreate} = this.props
+    const {title, selectedDate} = this.state
     // TODO handle missing title input
-    this.props.onCountdownCreate(this.state.title, this.state.selectedDate)
+    onCountdownCreate(title, selectedDate)
+    onCreate()
     this.setState(Create.getInitialState())
   }
 
