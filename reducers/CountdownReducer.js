@@ -6,8 +6,13 @@ export const countdowns = (state = [], action) => {
     case 'DELETE_COUNTDOWN':
       return state.slice(1, state.length)
     case 'persist/REHYDRATE':
-      const {countdowns} = action.payload
-      return countdowns.map(({date, ...rest}) => {return {date: new Date(date), ...rest}})
+      if (action.payload) {
+        const {countdowns} = action.payload
+        if (countdowns) {
+          return countdowns.map(({date, ...rest}) => {return {date: new Date(date), ...rest}})
+        }
+      }
+      return state
     default:
       return state
   }

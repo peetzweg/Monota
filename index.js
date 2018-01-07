@@ -36,7 +36,10 @@ const ReduxApp = () => {
 
     <Provider store={store}>
       <PersistGate
-        loading={<Text>Loading...</Text>}
+        loading={
+          <View style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <Text>Loading...</Text>
+          </View>}
         persistor={persistor}
       >
         <App />
