@@ -1,8 +1,11 @@
-import { AppRegistry } from 'react-native'
+import { AppRegistry, Text } from 'react-native'
 import React from 'react'
-import { applyMiddleware, combineReducers, createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import logger from 'redux-logger'
+import { persistStore, persistCombineReducers } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // default: localStorage if web, AsyncStorage if react-native
+import { PersistGate } from 'redux-persist/es/integration/react'
 
 import { countdowns } from './reducers/CountdownReducer'
 import { slide } from './reducers/SlideReducer'
@@ -11,18 +14,37 @@ import App from './App'
 // Disable annoying debug warnings
 console.disableYellowBox = true
 
-const store = createStore(
-  combineReducers({
-    countdowns,
-    slide
-  }),
-  applyMiddleware(logger)
-)
+const config = {
+  key: 'root',
+  storage,
+}
+const reducer = persistCombineReducers(config, {
+  countdowns,
+  slide
+})
 
-const ReduxApp = () => (
-  <Provider store={store}>
-    <App />
-  </Provider>
-)
+function configureStore () {
+  const store = createStore(reducer, applyMiddleware(logger))
+  const persistor = persistStore(store)
 
-AppRegistry.registerComponent('countdown', () => ReduxApp)
+  return {persistor, store}
+}
+
+const ReduxApp = () => {
+  const {persistor, store} = configureStore()
+  return (
+
+    <Provider store={store}>
+      <PersistGate
+        loading={<Text>Loading...</Text>}
+        persistor={persistor}
+      >
+        <App />
+      </PersistGate>
+    </Provider>
+
+  )
+}
+
+AppRegistry.registerComponent('Monota', () => ReduxApp)
+
