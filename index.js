@@ -1,4 +1,4 @@
-import { AppRegistry, Text } from 'react-native'
+import { AppRegistry, Text, View } from 'react-native'
 import React from 'react'
 import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
