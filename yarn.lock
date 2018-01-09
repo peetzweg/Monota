@@ -3312,6 +3312,10 @@ react-devtools-core@^2.5.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-native-localization@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-localization/-/react-native-localization-0.2.1.tgz#c7c15694098a8f7ff53ef87c7e806138a2c3a96c"
+
 react-native-swiper@^1.5.13:
   version "1.5.13"
   resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.5.13.tgz#fa695cd4ab77b9a9df2d2bfee38ea7274dd07a2e"

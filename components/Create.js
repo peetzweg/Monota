@@ -3,9 +3,23 @@ import { PropTypes } from 'prop-types'
 import { Component } from 'react'
 import { Button, DatePickerIOS, StyleSheet, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
+import LocalizedStrings from 'react-native-localization'
 import { addCountdown } from '../actions/index'
 
 class Create extends Component {
+
+  static strings = new LocalizedStrings({
+    en: {
+      what: 'What do you want to do?',
+      when: 'Till when do you need to do it?',
+      createButton: 'Create New Task',
+    },
+    de: {
+      what: 'Was möchtest du erledigen?',
+      when: 'Bis wann willst du es erledigt haben?',
+      createButton: 'Neue Deadline Erstellen',
+    }
+  })
 
   constructor () {
     super()
@@ -62,7 +76,7 @@ class Create extends Component {
       <View style={styles.container}>
         <View style={styles.top}>
           <Text style={styles.question}>
-            Was möchtest du erledigen?
+            {Create.strings.what}
           </Text>
           <View style={styles.titleContainer}>
             <TextInput
@@ -84,7 +98,7 @@ class Create extends Component {
         </View>
         <View style={styles.bottom}>
           <Text style={styles.question}>
-            Bis wann willst du es erledigt haben?
+            {Create.strings.when}
           </Text>
           <DatePickerIOS
             mode={'date'}
@@ -95,7 +109,7 @@ class Create extends Component {
           <Button
             disabled={title.trim() === ''}
             onPress={this.onCountdownCreate}
-            title='Neue Deadline Erstellen'
+            title={Create.strings.createButton}
             color='#FC5C63'
           />
         </View>

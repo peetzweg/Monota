@@ -3,12 +3,37 @@ import { PropTypes } from 'prop-types'
 import { Component } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import { connect } from 'react-redux'
+import LocalizedStrings from 'react-native-localization'
 import CountingNumber from './CountingNumber'
 import DeadlineTitle from './DeadlineTitle'
-
 import { removeCountdown } from '../actions/index'
 
 class Countdown extends Component {
+
+  static strings = new LocalizedStrings({
+    en: {
+      seconds: 'Seconds',
+      minutes: 'Minutes',
+      hours: 'Hours',
+      days: 'Days',
+      till: 'till',
+      done: 'Done',
+      cancel: 'Forget it',
+      missedIt: 'Missed it',
+      youFailed: 'You missed the deadline...',
+    },
+    de: {
+      seconds: 'Sekunden',
+      minutes: 'Minuten',
+      hours: 'Stunden',
+      days: 'Tage',
+      till: 'bis zum',
+      done: 'Erledigt',
+      cancel: 'Schaff ich nicht mehr',
+      missedIt: 'Das war wohl nix',
+      youFailed: 'Die Zeit ist rum, du hast die Deadline verpasst...',
+    }
+  })
 
   static propTypes = {
     countdown: PropTypes.object.isRequired,
@@ -19,6 +44,7 @@ class Countdown extends Component {
     this.intervalId = setInterval(() => {
       this.recalculateCountdown()
     }, 1000)
+    console.log('Countdown.strings.getInterfaceLanguage()', Countdown.strings.getInterfaceLanguage())
   }
 
   componentWillUnmount () {
@@ -61,19 +87,19 @@ class Countdown extends Component {
     const adaptValue = (value) => value < 10 ? `0${value}` : `${value}`
     const remaining = {
       days: {
-        name: 'Tage',
+        name: Countdown.strings.days,
         value: adaptValue(days),
       },
       hours: {
-        name: 'Stunden',
+        name: Countdown.strings.hours,
         value: adaptValue(hours)
       },
       minutes: {
-        name: 'Minuten',
+        name: Countdown.strings.minutes,
         value: adaptValue(minutes)
       },
       seconds: {
-        name: 'Sekunden',
+        name: Countdown.strings.seconds,
         value: adaptValue(seconds)
       },
     }
@@ -88,7 +114,7 @@ class Countdown extends Component {
           <View>
             <View style={styles.row}>
               {totalMillisLeft < 0
-                ? <Text>Zu spät digger, der Zug ist abgefahren...</Text>
+                ? <Text>{Countdown.strings.youFailed}</Text>
                 : ['days', 'hours', 'minutes', 'seconds'].map(key => {
                   if (remaining[key].value <= 0 && key !== 'seconds') return null
                   return (
@@ -102,25 +128,26 @@ class Countdown extends Component {
               }
             </View>
             <Text style={styles.deadlineDate}>
-              bis zum {this.props.countdown.date.toLocaleDateString('de-DE', {
-              day: 'numeric',
-              month: 'long',
-              year: 'numeric' // TODO only show if next year
-            })}
+              {`${Countdown.strings.till} ${countdown.date.toLocaleDateString(Countdown.strings.getInterfaceLanguage(), {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: countdown.date.getFullYear() === (new Date()).getFullYear() ? undefined : 'numeric', // TODO only show if next year
+              })}`}
             </Text>
           </View>
           <View style={styles.buttonContainer}>
 
             <Button
               onPress={this.props.onDone}
-              title={totalMillisLeft < 0 ? 'Das war wohl nix' : 'Das wird nix'}
+              title={totalMillisLeft < 0 ? Countdown.strings.missedIt : Countdown.strings.cancel}
               color="#FC5C63"
             />
             {totalMillisLeft < 0
               ? null
               : <Button
                 onPress={this.props.onDone}
-                title="Erledigt"
+                title={Countdown.strings.done}
                 color="#FC5C63"
               />
             }

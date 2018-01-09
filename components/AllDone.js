@@ -1,22 +1,37 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { StyleSheet, Text, View, Button } from 'react-native'
+import LocalizedStrings from 'react-native-localization'
+
+const strings = new LocalizedStrings({
+  en: {
+    allDone: 'You are all done, sit back and relax!',
+    createNewTask: 'I still got stuff to do...',
+  },
+  de: {
+    allDone: 'Alles erledigt. Chill!',
+    createNewTask: 'Ich hab noch was zu tun...',
+  }
+})
+
+const emojis = ['🏝', '😎', '🍻', '🎉']
 
 const AllDone = ({onCreateCountdown}) => {
+
   return (
     <View style={styles.container}>
       <Text style={styles.emoji}>
-        🏝
+        {emojis[Math.round(Math.random() * emojis.length - 1)]}
       </Text>
       <Text
         allowFontScaling={false}
         style={styles.text}
       >
-        Alles erledigt. Chill!
+        {strings.allDone}
       </Text>
       <Button
         onPress={onCreateCountdown}
-        title="Ich hab noch was zu tun..."
+        title={strings.createNewTask}
         color="#FC5C63"
       />
     </View>
