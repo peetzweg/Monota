@@ -93,7 +93,7 @@ class Create extends Component {
             onDateChange={this.onDateChange}
           />
           <Button
-            disabled={title === ''}
+            disabled={title.trim() === ''}
             onPress={this.onCountdownCreate}
             title='Neue Deadline Erstellen'
             color='#FC5C63'
