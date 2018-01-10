@@ -14,14 +14,14 @@ const strings = new LocalizedStrings({
   }
 })
 
-const emojis = ['🏝', '😎', '🍻', '🎉']
+const emojis = ['🏝', '😎', '🍻', '🎉', '🙌', '👏', '🤷', '💆']
 
 const AllDone = ({onCreateCountdown}) => {
 
   return (
     <View style={styles.container}>
       <Text style={styles.emoji}>
-        {emojis[Math.round(Math.random() * emojis.length - 1)]}
+        {emojis[Math.round(Math.max(0, (Math.random() * emojis.length) - 1))]}
       </Text>
       <Text
         allowFontScaling={false}
