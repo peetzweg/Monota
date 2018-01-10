@@ -12,3 +12,7 @@ export const changeSlide = (newSlide) => ({
   type: 'CHANGE_SLIDE',
   newSlide,
 })
+
+export const dismissWelcomeMessage = () => ({
+  type: 'DISMISS_WELCOME_MESSAGE',
+})

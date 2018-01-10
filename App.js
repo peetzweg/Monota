@@ -10,6 +10,7 @@ import Countdown from './components/Countdown'
 import Create from './components/Create'
 import AllDone from './components/AllDone'
 import { changeSlide } from './actions'
+import Welcome from './components/Welcome'
 
 class App extends Component<{}> {
   onIndexChanged = index => {
@@ -21,10 +22,14 @@ class App extends Component<{}> {
     }
   }
 
+  scrollRight = () => {
+    this.swiper.scrollBy(1)
+  }
+
   renderCountdowns (countdowns) {
     if (countdowns.length === 0) {
       return (
-        <AllDone onCreateCountdown={() => this.swiper.scrollBy(1)} />
+        <AllDone onCreateCountdown={this.scrollRight} />
       )
     }
 
@@ -40,7 +45,7 @@ class App extends Component<{}> {
   }
 
   render () {
-    const {countdowns} = this.props
+    const {user, countdowns} = this.props
     return (
       <SafeAreaView style={{flex: 1}}>
         <Swiper
@@ -49,13 +54,18 @@ class App extends Component<{}> {
           ref={swiper => this.swiper = swiper}
           onIndexChanged={this.onIndexChanged}
         >
-          {this.renderCountdowns(countdowns)}
-          {this.renderCreate()}
+          {
+            [
+              user.newUser ? <Welcome onOkay={this.scrollRight} /> : null,
+              this.renderCountdowns(countdowns),
+              this.renderCreate()
+            ].filter(slide => !!slide)
+          }
         </Swiper>
       </SafeAreaView>
     )
   }
 }
 
-const mapStateToProps = (state) => ({countdowns: state.countdowns})
+const mapStateToProps = ({user, countdowns}) => ({user, countdowns})
 export default connect(mapStateToProps, {changeSlide: changeSlide})(App)

@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/es/integration/react'
 
 import { countdowns } from './reducers/CountdownReducer'
 import { slide } from './reducers/SlideReducer'
+import { user } from './reducers/UserReducer'
 import App from './App'
 
 // Disable annoying debug warnings
@@ -20,7 +21,8 @@ const config = {
 }
 const reducer = persistCombineReducers(config, {
   countdowns,
-  slide
+  slide,
+  user,
 })
 
 function configureStore () {
