@@ -7,7 +7,7 @@ import { dismissWelcomeMessage } from '../actions'
 
 const strings = new LocalizedStrings({
   en: {
-    welcome: 'Hi 👋\nThis Monata, another kind of task manager. It just let\'s do one task at a time - Mono Tasking!\nOnly if you mark a Task as completed it will show you whats up next.\nYou will always work on the tasks with the earliest deadline.',
+    welcome: 'Hi 👋\nThis is Monata, another kind of task manager. It just let\'s do one task at a time - Mono Tasking!\nOnly if you mark a Task as completed it will show you whats up next.\nYou will always work on the tasks with the earliest deadline.',
     continue: 'Okay got it!',
   },
   de: {
@@ -24,7 +24,6 @@ const Welcome = ({onOkay, onDismissWelcomeMessage}) => {
   }
 
   return (
-
     <View style={styles.container}>
       <View>
         <View style={styles.textContainer}>
