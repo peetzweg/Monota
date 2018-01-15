@@ -114,7 +114,11 @@ class Countdown extends Component {
           <View>
             <View style={styles.row}>
               {totalMillisLeft < 0
-                ? <Text>{Countdown.strings.youFailed}</Text>
+                ? <Text
+                  allowFontScaling={false}
+                >
+                  {Countdown.strings.youFailed}
+                </Text>
                 : ['days', 'hours', 'minutes', 'seconds'].map(key => {
                   if (remaining[key].value <= 0 && key !== 'seconds') return null
                   return (
@@ -127,7 +131,10 @@ class Countdown extends Component {
                 })
               }
             </View>
-            <Text style={styles.deadlineDate}>
+            <Text
+              allowFontScaling={false}
+              style={styles.deadlineDate}
+            >
               {`${Countdown.strings.till} ${countdown.date.toLocaleDateString(Countdown.strings.getInterfaceLanguage(), {
                 weekday: 'long',
                 day: 'numeric',

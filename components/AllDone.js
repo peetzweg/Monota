@@ -20,8 +20,11 @@ const AllDone = ({onCreateCountdown}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.emoji}>
-        {emojis[Math.round(Math.max(0, (Math.random() * emojis.length) - 1))]}
+      <Text
+        allowFontScaling={false}
+        style={styles.emoji}
+      >
+        {emojis[Math.max(0, Math.round((Math.random() * emojis.length) - 1))]}
       </Text>
       <Text
         allowFontScaling={false}

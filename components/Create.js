@@ -75,7 +75,10 @@ class Create extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.top}>
-          <Text style={styles.question}>
+          <Text
+            allowFontScaling={false}
+            style={styles.question}
+          >
             {Create.strings.what}
           </Text>
           <View style={styles.titleContainer}>
@@ -97,7 +100,10 @@ class Create extends Component {
           </View>
         </View>
         <View style={styles.bottom}>
-          <Text style={styles.question}>
+          <Text
+            allowFontScaling={false}
+            style={styles.question}
+          >
             {Create.strings.when}
           </Text>
           <DatePickerIOS
