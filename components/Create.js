@@ -1,7 +1,7 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Component } from 'react'
-import { Button, DatePickerIOS, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, DatePickerIOS, PixelRatio, StyleSheet, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
 import LocalizedStrings from 'react-native-localization'
 import { addCountdown } from '../actions/index'
@@ -85,7 +85,7 @@ class Create extends Component {
               onKeyPress={this.onKeyPress}
               multiline
               blurOnSubmit
-              numberOfLines={8}
+              numberOfLines={4}
               autoCorrect
               allowFontScaling={false}
               returnKeyType={'done'}
@@ -113,7 +113,6 @@ class Create extends Component {
             color='#FC5C63'
           />
         </View>
-
       </View>
     )
   }
@@ -128,16 +127,16 @@ const
       height: '100%'
     },
     top: {
-      flex: 4,
+      flex: 1,
     },
     bottom: {
-      flex: 3,
+      flex: 1,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
     },
     title: {
-      fontSize: 34,
+      fontSize: PixelRatio.get() <= 2 ? 26 : 34,
       fontWeight: '900',
       color: '#424242',
     },
@@ -147,12 +146,12 @@ const
       paddingLeft: 16,
     },
     titleInput: {
-      fontSize: 34,
+      fontSize: PixelRatio.get() <= 2 ? 26 : 34,
       fontFamily: 'Avenir',
       color: '#424242',
     },
     question: {
-      fontSize: 16,
+      fontSize: PixelRatio.get() <= 2 ? 12 : 16,
       fontFamily: 'Avenir',
       color: '#424242',
     },

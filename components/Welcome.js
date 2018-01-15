@@ -1,13 +1,13 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { PixelRatio, StyleSheet, Text, View, Button } from 'react-native'
 import LocalizedStrings from 'react-native-localization'
 import { connect } from 'react-redux'
 import { dismissWelcomeMessage } from '../actions'
 
 const strings = new LocalizedStrings({
   en: {
-    welcome: 'Hi 👋\nThis Monata, another kind of task manager. It just let\'s do one task at a time - Mono Tasking!\nOnly if you mark a Task as completed it will show you whats up next.\nThe tasks are scheduled after the earliest deadline first system.',
+    welcome: 'Hi 👋\nThis Monata, another kind of task manager. It just let\'s do one task at a time - Mono Tasking!\nOnly if you mark a Task as completed it will show you whats up next.\nYou will always work on the tasks with the earliest deadline.',
     continue: 'Okay got it!',
   },
   de: {
@@ -24,20 +24,27 @@ const Welcome = ({onOkay, onDismissWelcomeMessage}) => {
   }
 
   return (
+
     <View style={styles.container}>
-      <View style={styles.textContainer}>
-        <Text
-          allowFontScaling={false}
-          style={styles.text}
+      <View>
+        <View style={styles.textContainer}>
+          <Text
+            allowFontScaling={false}
+            style={styles.text}
+          >
+            {strings.welcome}
+          </Text>
+        </View>
+        <View
+          style={styles.buttonContainer}
         >
-          {strings.welcome}
-        </Text>
+          <Button
+            onPress={onPress}
+            title={strings.continue}
+            color="#FC5C63"
+          />
+        </View>
       </View>
-      <Button
-        onPress={onPress}
-        title={strings.continue}
-        color="#FC5C63"
-      />
     </View>
   )
 }
@@ -45,10 +52,10 @@ const Welcome = ({onOkay, onDismissWelcomeMessage}) => {
 const styles = StyleSheet.create({
   container: {
     margin: 16,
-    height: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    height: '100%',
+    justifyContent: 'space-around',
   },
   textContainer: {
     display: 'flex',
@@ -59,11 +66,14 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
   },
   text: {
-    fontSize: 34,
+    fontSize: PixelRatio.get() <= 2 ? 26 : 34,
     fontFamily: 'Avenir',
     textAlign: 'left',
     color: '#424242',
   },
+  buttonContainer: {
+    padding: 16,
+  }
 })
 
 export default connect(null, {onDismissWelcomeMessage: dismissWelcomeMessage})(Welcome)

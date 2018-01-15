@@ -1,6 +1,6 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { PixelRatio, StyleSheet, Text, View, Button } from 'react-native'
 import LocalizedStrings from 'react-native-localization'
 
 const strings = new LocalizedStrings({
@@ -46,11 +46,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emoji: {
-    fontSize: 64,
+    fontSize: PixelRatio.get() <= 2 ? 52 : 64,
     textAlign: 'center',
   },
   text: {
-    fontSize: 34,
+    fontSize: PixelRatio.get() <= 2 ? 26 : 34,
     fontFamily: 'Avenir',
     textAlign: 'center',
     color: '#424242',
