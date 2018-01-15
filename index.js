@@ -11,6 +11,7 @@ import { countdowns } from './reducers/CountdownReducer'
 import { slide } from './reducers/SlideReducer'
 import { user } from './reducers/UserReducer'
 import App from './App'
+import Loading from './components/Loading'
 
 // Disable annoying debug warnings
 console.disableYellowBox = true
@@ -38,10 +39,7 @@ const ReduxApp = () => {
 
     <Provider store={store}>
       <PersistGate
-        loading={
-          <View style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <Text>Loading...</Text>
-          </View>}
+        loading={<Loading />}
         persistor={persistor}
       >
         <App />
