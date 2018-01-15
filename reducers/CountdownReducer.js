@@ -12,7 +12,7 @@ export const countdowns = (state = [], action) => {
           return countdowns.map(({date, createdAt, ...rest}) => {
             return {
               date: new Date(date),
-              createdAt: new date(createdAt),
+              createdAt: new Date(createdAt),
               ...rest
             }
           })
