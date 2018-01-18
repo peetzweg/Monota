@@ -48,20 +48,22 @@ class App extends Component<{}> {
     const {user, countdowns} = this.props
     return (
       <SafeAreaView style={{flex: 1}}>
-        <Swiper
-          loop={false}
-          showsPagination={false}
-          ref={swiper => this.swiper = swiper}
-          onIndexChanged={this.onIndexChanged}
-        >
-          {
-            [
-              user.newUser ? <Welcome onOkay={this.scrollRight} /> : null,
-              this.renderCountdowns(countdowns),
-              this.renderCreate()
-            ].filter(slide => !!slide)
-          }
-        </Swiper>
+        {user.newUser
+          ? <Welcome />
+          : <Swiper
+            loop={false}
+            showsPagination={false}
+            ref={swiper => this.swiper = swiper}
+            onIndexChanged={this.onIndexChanged}
+          >
+            {
+              [
+                this.renderCountdowns(countdowns),
+                this.renderCreate()
+              ].filter(slide => !!slide)
+            }
+          </Swiper>
+        }
       </SafeAreaView>
     )
   }

@@ -16,13 +16,7 @@ const strings = new LocalizedStrings({
   }
 })
 
-const Welcome = ({onOkay, onDismissWelcomeMessage}) => {
-
-  const onPress = () => {
-    onOkay()
-    onDismissWelcomeMessage()
-  }
-
+const Welcome = ({onDismissWelcomeMessage}) => {
   return (
     <View style={styles.container}>
       <View>
@@ -38,7 +32,7 @@ const Welcome = ({onOkay, onDismissWelcomeMessage}) => {
           style={styles.buttonContainer}
         >
           <Button
-            onPress={onPress}
+            onPress={onDismissWelcomeMessage}
             title={strings.continue}
             color="#FC5C63"
           />
