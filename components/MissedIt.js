@@ -6,24 +6,22 @@ import EmojiMessage from './EmojiMessage'
 
 const strings = new LocalizedStrings({
   en: {
-    allDone: 'You are all done, sit back and relax!',
-    createNewTask: 'I still got stuff to do...',
+    missedIt: 'Aaaaaaaand it\'s gone...',
   },
   de: {
-    allDone: 'Alles erledigt. Chill!',
-    createNewTask: 'Ich hab noch was zu tun...',
+    missedIt: 'Das war wohl nix...',
   }
 })
 
-const emojis = ['🏝', '😎', '🍻', '🎉', '🙌', '👏', '🤷', '💆']
+const emojis = ['🙈', '😅', '🙄', '😪', '😭', '😢', '😱', '🤯']
 
-const AllDone = ({onCreateCountdown}) => {
+const MissedIt = ({onCreateCountdown}) => {
 
   return (
     <EmojiMessage
       style={styles.container}
       emojis={emojis}
-      text={strings.allDone}
+      text={strings.missedIt}
       buttonLabel={strings.createNewTask}
       buttonFunc={onCreateCountdown}
     />
@@ -31,12 +29,7 @@ const AllDone = ({onCreateCountdown}) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  container: {},
 })
 
-export default AllDone
+export default MissedIt

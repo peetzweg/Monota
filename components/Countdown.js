@@ -7,6 +7,7 @@ import LocalizedStrings from 'react-native-localization'
 import CountingNumber from './CountingNumber'
 import DeadlineTitle from './DeadlineTitle'
 import { removeCountdown } from '../actions/index'
+import MissedIt from './MissedIt'
 
 class Countdown extends Component {
 
@@ -20,7 +21,6 @@ class Countdown extends Component {
       done: 'Done',
       cancel: 'Forget it',
       missedIt: 'Missed it',
-      youFailed: 'You missed the deadline...',
     },
     de: {
       seconds: 'Sekunden',
@@ -31,7 +31,6 @@ class Countdown extends Component {
       done: 'Erledigt',
       cancel: 'Schaff ich nicht mehr',
       missedIt: 'Das war wohl nix',
-      youFailed: 'Die Zeit ist rum, du hast die Deadline verpasst...',
     }
   })
 
@@ -40,18 +39,26 @@ class Countdown extends Component {
   }
 
   componentDidMount () {
-    this.recalculateCountdown()
-    this.intervalId = setInterval(() => {
-      this.recalculateCountdown()
-    }, 1000)
-    console.log('Countdown.strings.getInterfaceLanguage()', Countdown.strings.getInterfaceLanguage())
+    this.setState(this.recalculateState(), () => {
+      if (!this.state.missed) {
+        this.intervalId = setInterval(() => {
+          this.setState(this.recalculateState())
+        }, 1000)
+      }
+    })
+  }
+
+  componentDidUpdate (prevProps, prevState, prevContext) {
+    if (this.state.missed === true) {
+      clearInterval(this.intervalId)
+    }
   }
 
   componentWillUnmount () {
     clearInterval(this.intervalId)
   }
 
-  recalculateCountdown = () => {
+  recalculateState = () => {
     const {countdown} = this.props
     const {date} = countdown
 
@@ -71,8 +78,8 @@ class Countdown extends Component {
     }
     const seconds = Math.floor(overallMillis / SECOND_IN_MILLIS)
 
-    this.setState({
-      totalMillisLeft: date - new Date(),
+    return ({
+      missed: (date - new Date()) < 0,
       seconds,
       minutes,
       hours,
@@ -80,8 +87,8 @@ class Countdown extends Component {
     })
   }
 
-  renderCountdown () {
-    const {totalMillisLeft, seconds, minutes, hours, days} = this.state
+  _renderCountdownStillOn () {
+    const {seconds, minutes, hours, days} = this.state
     const {countdown} = this.props
 
     const adaptValue = (value) => value < 10 ? `0${value}` : `${value}`
@@ -105,52 +112,57 @@ class Countdown extends Component {
     }
 
     return (
+      <View>
+        <View style={styles.row}>
+          {['days', 'hours', 'minutes', 'seconds'].map(key => {
+            if (remaining[key].value <= 0 && key !== 'seconds') return null
+            return (
+              <CountingNumber
+                key={key}
+                value={remaining[key].value}
+                label={remaining[key].name}
+              />
+            )
+          })}
+        </View>
+        <Text
+          allowFontScaling={false}
+          style={styles.deadlineDate}
+        >
+          {`${Countdown.strings.till} ${countdown.date.toLocaleDateString(Countdown.strings.getInterfaceLanguage(), {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: countdown.date.getFullYear() === (new Date()).getFullYear() ? undefined : 'numeric', // TODO only show if next year
+          })}`}
+        </Text>
+      </View>
+    )
+  }
+
+  renderCountdown () {
+    const {missed} = this.state
+    const {countdown} = this.props
+
+    return (
       <View style={styles.container}>
         <View style={styles.top}>
           <DeadlineTitle value={countdown.title} />
         </View>
 
         <View style={styles.bottom}>
-          <View>
-            <View style={styles.row}>
-              {totalMillisLeft < 0
-                ? <Text
-                  allowFontScaling={false}
-                >
-                  {Countdown.strings.youFailed}
-                </Text>
-                : ['days', 'hours', 'minutes', 'seconds'].map(key => {
-                  if (remaining[key].value <= 0 && key !== 'seconds') return null
-                  return (
-                    <CountingNumber
-                      key={key}
-                      value={remaining[key].value}
-                      label={remaining[key].name}
-                    />
-                  )
-                })
-              }
-            </View>
-            <Text
-              allowFontScaling={false}
-              style={styles.deadlineDate}
-            >
-              {`${Countdown.strings.till} ${countdown.date.toLocaleDateString(Countdown.strings.getInterfaceLanguage(), {
-                weekday: 'long',
-                day: 'numeric',
-                month: 'long',
-                year: countdown.date.getFullYear() === (new Date()).getFullYear() ? undefined : 'numeric', // TODO only show if next year
-              })}`}
-            </Text>
-          </View>
+          {missed
+            ? <MissedIt /> : this._renderCountdownStillOn()
+          }
+
           <View style={styles.buttonContainer}>
 
             <Button
               onPress={this.props.onDone}
-              title={totalMillisLeft < 0 ? Countdown.strings.missedIt : Countdown.strings.cancel}
+              title={missed ? Countdown.strings.missedIt : Countdown.strings.cancel}
               color="#FC5C63"
             />
-            {totalMillisLeft < 0
+            {missed
               ? null
               : <Button
                 onPress={this.props.onDone}
@@ -196,6 +208,11 @@ const styles = StyleSheet.create({
   deadlineDate: {
     fontFamily: 'Avenir',
     fontSize: 16,
+    color: '#424242',
+    textAlign: 'center',
+  },
+  youFailedText: {
+    fontFamily: 'Avenir',
     color: '#424242',
     textAlign: 'center',
   },
