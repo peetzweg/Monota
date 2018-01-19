@@ -48,6 +48,17 @@ class Countdown extends Component {
     })
   }
 
+  componentWillReceiveProps (nextProps, nextContext) {
+    // TODO almost the same as componentDidMount
+    this.setState(this.recalculateState(nextProps), () => {
+      if (!this.state.missed) {
+        this.intervalId = setInterval(() => {
+          this.setState(this.recalculateState())
+        }, 1000)
+      }
+    })
+  }
+
   componentDidUpdate (prevProps, prevState, prevContext) {
     if (this.state.missed === true) {
       clearInterval(this.intervalId)
@@ -58,8 +69,8 @@ class Countdown extends Component {
     clearInterval(this.intervalId)
   }
 
-  recalculateState = () => {
-    const {countdown} = this.props
+  recalculateState = (nextProps) => {
+    const countdown = nextProps ? nextProps.countdown : this.props.countdown
     const {date} = countdown
 
     let overallMillis = date - new Date()
