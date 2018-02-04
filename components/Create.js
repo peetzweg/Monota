@@ -106,12 +106,28 @@ class Create extends Component {
           >
             {Create.strings.when}
           </Text>
-          <DatePickerIOS
-            mode={'date'}
-            date={selectedDate}
-            minimumDate={new Date()}
-            onDateChange={this.onDateChange}
-          />
+          <View style={styles.dateContainer}>
+            <View style={styles.weekdayContainer}> 
+                <Text
+                  style={styles.weekdayText}
+                  allowFontScaling={false}
+                >
+                  {
+                    `${selectedDate.toLocaleDateString(Create.strings.getInterfaceLanguage(), 
+                      {
+                        weekday: 'short',
+                      })}`
+                  }
+                </Text>
+            </View>
+            <DatePickerIOS
+                style={styles.datePicker}
+              mode={'date'}
+              date={selectedDate}
+              minimumDate={new Date()}
+              onDateChange={this.onDateChange}
+            />
+          </View>
           <Button
             disabled={title.trim() === ''}
             onPress={this.onCountdownCreate}
@@ -126,6 +142,26 @@ class Create extends Component {
 
 const
   styles = StyleSheet.create({
+    dateContainer:{
+      display:'flex',
+      flexDirection:'row',
+      justifyContent:'space-around',
+      alignItems: 'center',
+    },
+    weekdayContainer:{
+      display:'flex',
+      justifyContent:'center',
+      alignItems: 'center',
+      flex:1,
+    },
+    weekdayText:{
+      fontSize: 23,
+      lineHeight: 34,
+      color:'#333',
+    },
+    datePicker:{
+      flex:3,
+    },
     container: {
       display: 'flex',
       flexDirection: 'column',
