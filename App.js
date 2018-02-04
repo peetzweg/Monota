@@ -12,7 +12,7 @@ import AllDone from './components/AllDone'
 import { changeSlide } from './actions'
 import Welcome from './components/Welcome'
 
-class App extends Component<{}> {
+class App extends Component {
   onIndexChanged = index => {
     const {changeSlide} = this.props
     if (index === 1) {

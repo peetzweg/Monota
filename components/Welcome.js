@@ -7,11 +7,11 @@ import { dismissWelcomeMessage } from '../actions'
 
 const strings = new LocalizedStrings({
   en: {
-    welcome: 'Hi 👋\nThis is Monata, another kind of task manager. It just let\'s do one task at a time - Mono Tasking!\nOnly if you mark a Task as completed it will show you whats up next.\nYou will always work on the tasks with the earliest deadline.',
+    welcome: 'Hi\nThis is Monata, another kind of task manager. It just let\'s do one task at a time - Mono Tasking!\nOnly if you mark a Task as completed it will show you whats up next.\nYou will always work on the tasks with the earliest deadline.',
     continue: 'Okay got it!',
   },
   de: {
-    welcome: 'Hi 👋\nDas ist Monota, ein andere Art von Todo App. Es lässt dich immmer nur eine Aufgabe zurselben Zeit erledigen - Monotasking!\nErst wenn du diese erledigt hast erhälst du die nächste.\nDie Todos werden nach ihrer Deadline sortiert.',
+    welcome: 'Hi\nDas ist Monota, ein andere Art von Todo App. Es lässt dich immmer nur eine Aufgabe zurselben Zeit erledigen - Monotasking!\nErst wenn du diese erledigt hast erhälst du die nächste.\nDie Todos werden nach ihrer Deadline sortiert.',
     continue: 'Alles klar!',
   }
 })

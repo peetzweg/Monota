@@ -2,7 +2,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { PixelRatio, StyleSheet, Text, View, Button } from 'react-native'
 import LocalizedStrings from 'react-native-localization'
-import EmojiMessage from './EmojiMessage'
+import ImageMessage from './ImageMessage'
 
 const strings = new LocalizedStrings({
   en: {
@@ -13,14 +13,11 @@ const strings = new LocalizedStrings({
   }
 })
 
-const emojis = ['🙈', '😅', '🙄', '😪', '😭', '😢', '😱', '🤯']
-
 const MissedIt = ({onCreateCountdown}) => {
-
   return (
-    <EmojiMessage
+    <ImageMessage
       style={styles.container}
-      emojis={emojis}
+      image={'negative'}
       text={strings.missedIt}
       buttonLabel={strings.createNewTask}
       buttonFunc={onCreateCountdown}
