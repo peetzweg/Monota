@@ -96,7 +96,6 @@ class Create extends Component {
               onKeyPress={this.onKeyPress}
               multiline
               blurOnSubmit
-              maxLength={60}
               autoCorrect
               allowFontScaling={false}
               returnKeyType={'done'}
@@ -138,6 +137,22 @@ class Create extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: "space-between",
+    padding: 16,
+    height: '100%'
+  },
+  top: {
+    flex: 1
+  },
+  bottom: {
+    flex: 2,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end'
+  },
   dateContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -157,21 +172,6 @@ const styles = StyleSheet.create({
   },
   datePicker: {
     flex: 3
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: 16,
-    height: '100%'
-  },
-  top: {
-    flex: 1
-  },
-  bottom: {
-    flex: 2,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between'
   },
   title: {
     fontSize: PixelRatio.get() <= 2
@@ -198,12 +198,7 @@ const styles = StyleSheet.create({
       : 16,
     fontFamily: 'Avenir',
     color: '#424242'
-  },
-  button: {
-    fontFamily: 'Avenir',
-    color: '#424242'
   }
-
 })
 
 Create.propTypes = {}
