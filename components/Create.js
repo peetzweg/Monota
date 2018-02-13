@@ -34,7 +34,6 @@ class Create extends Component {
   constructor() {
     super()
     this.state = Create.getInitialState()
-    console.log("isTablet()", isTablet())
   }
 
   static getInitialState() {
