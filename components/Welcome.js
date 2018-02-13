@@ -1,18 +1,22 @@
 import React from 'react'
-import { PropTypes } from 'prop-types'
-import { PixelRatio, StyleSheet, Text, View, Button } from 'react-native'
+import {PropTypes} from 'prop-types'
+import {PixelRatio, StyleSheet, Text, View, Button} from 'react-native'
 import LocalizedStrings from 'react-native-localization'
-import { connect } from 'react-redux'
-import { dismissWelcomeMessage } from '../actions'
+import {connect} from 'react-redux'
+import {dismissWelcomeMessage} from '../actions'
 
 const strings = new LocalizedStrings({
   en: {
-    welcome: 'Hi\nThis is Monata, another kind of task manager. It just let\'s do one task at a time - Mono Tasking!\nOnly if you mark a Task as completed it will show you whats up next.\nYou will always work on the tasks with the earliest deadline.',
-    continue: 'Okay got it!',
+    welcome: "Hi\nThis is Monata, another kind of task manager. It just let's do one task at a" +
+        " time - Mono Tasking!\nOnly if you mark a Task as completed it will show you wha" +
+        "ts up next.\nYou will always work on the tasks with the earliest deadline.",
+    continue: 'Okay got it!'
   },
   de: {
-    welcome: 'Hi\nDas ist Monota, ein andere Art von Todo App. Es lässt dich immmer nur eine Aufgabe zurselben Zeit erledigen - Monotasking!\nErst wenn du diese erledigt hast erhälst du die nächste.\nDie Todos werden nach ihrer Deadline sortiert.',
-    continue: 'Alles klar!',
+    welcome: 'Hi\nDas ist Monota, ein andere Art von Todo App. Es lässt dich immmer nur eine A' +
+        'ufgabe zurselben Zeit erledigen - Monotasking!\nErst wenn du diese erledigt hast' +
+        ' erhälst du die nächste.\nDie Todos werden nach ihrer Deadline sortiert.',
+    continue: 'Alles klar!'
   }
 })
 
@@ -21,21 +25,15 @@ const Welcome = ({onDismissWelcomeMessage}) => {
     <View style={styles.container}>
       <View>
         <View style={styles.textContainer}>
-          <Text
-            allowFontScaling={false}
-            style={styles.text}
-          >
+          <Text adjustsFontSizeToFit={true} allowFontScaling={false} style={styles.text}>
             {strings.welcome}
           </Text>
         </View>
-        <View
-          style={styles.buttonContainer}
-        >
+        <View style={styles.buttonContainer}>
           <Button
             onPress={onDismissWelcomeMessage}
             title={strings.continue}
-            color="#FC5C63"
-          />
+            color='#FC5C63'/>
         </View>
       </View>
     </View>
@@ -48,7 +46,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
-    justifyContent: 'space-around',
+    justifyContent: 'space-around'
   },
   textContainer: {
     display: 'flex',
@@ -56,16 +54,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderLeftWidth: 2,
     borderColor: '#FC5C63',
-    paddingLeft: 16,
+    paddingLeft: 16
   },
   text: {
+    height:"80%",
+    width:"100%",
     fontSize: PixelRatio.get() <= 2 ? 26 : 34,
     fontFamily: 'Avenir',
     textAlign: 'left',
-    color: '#424242',
+    color: '#424242'
   },
   buttonContainer: {
-    padding: 16,
+    padding: 16
   }
 })
 

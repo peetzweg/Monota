@@ -1,10 +1,20 @@
 import React from 'react'
-import { PropTypes } from 'prop-types'
-import { Component } from 'react'
-import { Button, DatePickerIOS, PixelRatio, StyleSheet, Text, TextInput, View } from 'react-native'
-import { connect } from 'react-redux'
+
+import {PropTypes} from 'prop-types'
+import {Component} from 'react'
+import {
+  Button,
+  DatePickerIOS,
+  PixelRatio,
+  StyleSheet,
+  Text,
+  TextInput,
+  View
+} from 'react-native'
+import {connect} from 'react-redux'
 import LocalizedStrings from 'react-native-localization'
-import { addCountdown } from '../actions/index'
+import {addCountdown} from '../actions/index'
+import {isTablet} from '../utils'
 
 class Create extends Component {
 
@@ -12,47 +22,49 @@ class Create extends Component {
     en: {
       what: 'What do you want to do?',
       when: 'Till when do you need to do it?',
-      createButton: 'Create New Task',
+      createButton: 'Create New Task'
     },
     de: {
       what: 'Was möchtest du erledigen?',
       when: 'Bis wann willst du es erledigt haben?',
-      createButton: 'Neue Deadline Erstellen',
+      createButton: 'Neue Deadline Erstellen'
     }
   })
 
-  constructor () {
+  constructor() {
     super()
     this.state = Create.getInitialState()
+    console.log("isTablet()", isTablet())
   }
 
-  static getInitialState () {
+  static getInitialState() {
     const tomorrow = new Date()
     tomorrow.setDate(tomorrow.getDate() + 1)
-    return {
-      selectedDate: tomorrow,
-      title: ''
-    }
+    return {selectedDate: tomorrow, title: ''}
   }
 
-  componentDidUpdate (prevProps, prevState, prevContext) {
+  componentDidUpdate(prevProps, prevState, prevContext) {
     if (prevProps.currentSlide !== this.props.currentSlide && this.props.currentSlide === 'CREATE' && this.state.title === '') {
-      this.input.focus()
+      this
+        .input
+        .focus()
     } else if (this.props.currentSlide !== 'CREATE') {
-      this.input.blur()
+      this
+        .input
+        .blur()
     }
   }
 
   onKeyPress = (event) => {
     if (event.nativeEvent.key === 'Enter') {
-      this.input.blur()
+      this
+        .input
+        .blur()
     }
   }
 
   onDateChange = (selectedDate) => {
-    this.setState({
-      selectedDate,
-    })
+    this.setState({selectedDate})
   }
 
   onChangeText = (title) => {
@@ -70,15 +82,12 @@ class Create extends Component {
     }
   }
 
-  render () {
+  render() {
     const {title, selectedDate} = this.state
     return (
       <View style={styles.container}>
         <View style={styles.top}>
-          <Text
-            allowFontScaling={false}
-            style={styles.question}
-          >
+          <Text allowFontScaling={false} style={styles.question}>
             {Create.strings.what}
           </Text>
           <View style={styles.titleContainer}>
@@ -88,121 +97,115 @@ class Create extends Component {
               onKeyPress={this.onKeyPress}
               multiline
               blurOnSubmit
-              numberOfLines={4}
+              maxLength={60}
               autoCorrect
               allowFontScaling={false}
               returnKeyType={'done'}
               enablesReturnKeyAutomatically
               style={styles.titleInput}
               onChangeText={this.onChangeText}
-              value={title}
-            />
+              value={title}/>
           </View>
         </View>
         <View style={styles.bottom}>
-          <Text
-            allowFontScaling={false}
-            style={styles.question}
-          >
+          <Text allowFontScaling={false} style={styles.question}>
             {Create.strings.when}
           </Text>
           <View style={styles.dateContainer}>
-            <View style={styles.weekdayContainer}> 
-                <Text
-                  style={styles.weekdayText}
-                  allowFontScaling={false}
-                >
-                  {
-                    `${selectedDate.toLocaleDateString(Create.strings.getInterfaceLanguage(), 
-                      {
-                        weekday: 'short',
-                      })}`
-                  }
-                </Text>
+            <View style={styles.weekdayContainer}>
+              <Text style={styles.weekdayText} allowFontScaling={false}>
+                {`${selectedDate.toLocaleDateString(Create.strings.getInterfaceLanguage(), {
+                  weekday: 'short',
+                  })}`
+}
+              </Text>
             </View>
             <DatePickerIOS
-                style={styles.datePicker}
+              style={styles.datePicker}
               mode={'date'}
               date={selectedDate}
               minimumDate={new Date()}
-              onDateChange={this.onDateChange}
-            />
+              onDateChange={this.onDateChange}/>
           </View>
           <Button
             disabled={title.trim() === ''}
             onPress={this.onCountdownCreate}
             title={Create.strings.createButton}
-            color='#FC5C63'
-          />
+            color='#FC5C63'/>
         </View>
       </View>
     )
   }
 }
 
-const
-  styles = StyleSheet.create({
-    dateContainer:{
-      display:'flex',
-      flexDirection:'row',
-      justifyContent:'space-around',
-      alignItems: 'center',
-    },
-    weekdayContainer:{
-      display:'flex',
-      justifyContent:'center',
-      alignItems: 'center',
-      flex:1,
-    },
-    weekdayText:{
-      fontSize: 23,
-      lineHeight: 34,
-      color:'#333',
-    },
-    datePicker:{
-      flex:3,
-    },
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      padding: 16,
-      height: '100%'
-    },
-    top: {
-      flex: 1,
-    },
-    bottom: {
-      flex: 1,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-    },
-    title: {
-      fontSize: PixelRatio.get() <= 2 ? 26 : 34,
-      fontWeight: '900',
-      color: '#424242',
-    },
-    titleContainer: {
-      borderLeftWidth: 2,
-      borderColor: '#FC5C63',
-      paddingLeft: 16,
-    },
-    titleInput: {
-      fontSize: PixelRatio.get() <= 2 ? 26 : 34,
-      fontFamily: 'Avenir',
-      color: '#424242',
-    },
-    question: {
-      fontSize: PixelRatio.get() <= 2 ? 12 : 16,
-      fontFamily: 'Avenir',
-      color: '#424242',
-    },
-    button: {
-      fontFamily: 'Avenir',
-      color: '#424242',
-    }
+const styles = StyleSheet.create({
+  dateContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+  weekdayContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1
+  },
+  weekdayText: {
+    fontSize: 23,
+    lineHeight: 34,
+    color: '#333'
+  },
+  datePicker: {
+    flex: 3
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 16,
+    height: '100%'
+  },
+  top: {
+    flex: 1
+  },
+  bottom: {
+    flex: 2,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
+  title: {
+    fontSize: PixelRatio.get() <= 2
+      ? 26
+      : 34,
+    fontWeight: '900',
+    color: '#424242'
+  },
+  titleContainer: {
+    borderLeftWidth: 2,
+    borderColor: '#FC5C63',
+    paddingLeft: 16
+  },
+  titleInput: {
+    fontSize: PixelRatio.get() <= 2
+      ? 26
+      : 34,
+    fontFamily: 'Avenir',
+    color: '#424242'
+  },
+  question: {
+    fontSize: PixelRatio.get() <= 2
+      ? 12
+      : 16,
+    fontFamily: 'Avenir',
+    color: '#424242'
+  },
+  button: {
+    fontFamily: 'Avenir',
+    color: '#424242'
+  }
 
-  })
+})
 
 Create.propTypes = {}
 Create.defaultProps = {}
