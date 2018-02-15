@@ -1,4 +1,7 @@
 # Monota
+
+[Get it on iOS](https://itunes.apple.com/us/app/monota/id1333036184?mt=8)
+
 Monata is another kind of task manager. It just let's do one task at a time - embrace mono tasking!
 Multitasking is so 2000s.
 Only if you mark a Task as completed it will show you whats up next.
